@@ -1,0 +1,32 @@
+.homeContainer {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  max-width: 90%;
+  margin: 5rem auto;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.textBlock {
+  margin-bottom: 3rem;
+}
+
+.textBlock h2 {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .cardContainer {
+    flex-wrap: wrap;
+  }
+}

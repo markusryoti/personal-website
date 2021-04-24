@@ -1,0 +1,92 @@
+/* ================================================================= */
+/* Vars */
+:root {
+  --bg-dark: #2f2f2f;
+  --bg-danger: #ff3562;
+  --bg-danger-hover: #fd2554;
+  --bg-light: #fefbfc;
+  --bg-success: #0a8754;
+  --bg-success-hover: #097248;
+  --bg-info: #0197f6;
+  --text-primary: #2f2f2f;
+  --text-secondary: #ffffff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://use.fontawesome.com/releases/v5.15.3/css/all.css');
+/* ================================================================= */
+/* Resets etc */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+  line-height: 1.5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ================================================================= */
+/* Utils */
+.container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centerChildren {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.btn {
+  width: 150px;
+  height: 50px;
+  background-color: var(--bg-primary);
+  color: var(--bg-secondary);
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+input[type='button'].btn {
+  border-radius: 5px;
+  outline: none;
+  border: 0;
+}
+
+.btn-success {
+  background: var(--bg-success);
+  color: var(--text-secondary);
+}
+
+.btn-success:hover {
+  background: var(--bg-success-hover);
+}
+
+.btn-danger {
+  background: var(--bg-danger);
+  color: var(--text-secondary);
+}
+
+.btn-danger:hover {
+  background: var(--bg-danger-hover);
+}
+
+br {
+  margin-bottom: 2rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}

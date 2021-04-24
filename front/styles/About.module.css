@@ -1,0 +1,26 @@
+.center {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.heading {
+  margin-bottom: 2rem;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.imageContainer img {
+  width: 75%;
+}
+
+@media only screen and (max-width: 600px) {
+  .imageContainer img {
+    width: 100%;
+  }
+}
