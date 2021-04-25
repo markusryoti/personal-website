@@ -8,6 +8,7 @@ export default {
       database: process.env.POSTGRES_DB,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
+      port: process.env.DB_PORT,
     },
     migrations: {
       directory: './db/migrations',
@@ -23,6 +24,7 @@ export default {
       database: process.env.POSTGRES_TEST_DB,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
+      port: process.env.DB_PORT,
     },
     migrations: {
       directory: './db/migrations',
