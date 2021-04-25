@@ -6,6 +6,9 @@ export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableNames.users, table => {
     table.increments().notNullable();
     table.string('email', 254).notNullable().unique();
+    table.string('username', 128).notNullable().unique();
+    table.string('first_name', 128);
+    table.string('last_name', 128);
     table.string('password', 254).notNullable();
     table.dateTime('last_login');
     table.timestamps(false, true);
@@ -20,7 +23,8 @@ export async function up(knex: Knex): Promise<void> {
       .unsigned()
       .references('id')
       .inTable(tableNames.users)
-      .onDelete('cascade');
+      .onDelete('cascade')
+      .notNullable();
     table.timestamps(false, true);
   });
 }
