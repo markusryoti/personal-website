@@ -8,4 +8,4 @@ Next.js
 
 ## Backend
 
-Express server
+Express server, Postgres database

@@ -11,17 +11,24 @@
   height: 2rem;
   margin: 0.5rem 0;
   padding: 0.5rem;
+  border: 1px solid var(--text-primary);
+  border-radius: 5px;
 }
 
 .form input[type='submit'] {
-  width: 50%;
+  width: 25%;
+  height: 50px;
 }
 
 .form select {
   width: 25%;
   height: 2rem;
   margin: 0.5rem 0;
+  padding-left: 5px;
   align-self: flex-start;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--text-primary);
+  border-radius: 5px;
 }
 
 .form textarea {
@@ -29,4 +36,20 @@
   height: 10rem;
   margin: 0.5rem 0;
   padding: 0.5rem;
+  border: 1px solid var(--text-primary);
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .form {
+    width: 95%;
+  }
+
+  .form select {
+    width: 100%;
+  }
+
+  .form input[type='submit'] {
+    width: 100%;
+  }
 }

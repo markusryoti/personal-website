@@ -8,7 +8,7 @@ const contact = () => {
   return (
     <>
       <Nav />
-      <div className="centerChildren">
+      <div className="center-children">
         <div className="container">
           <h1>Let's get in touch.</h1>
           <form action="#" className={styles.form}>
@@ -23,7 +23,7 @@ const contact = () => {
               <option>Other</option>
             </select>
             <textarea placeholder="Message"></textarea>
-            <input type="submit" value="Send" />
+            <input type="submit" value="Send" className="btn btn-success" />
           </form>
         </div>
       </div>

@@ -1,18 +1,30 @@
 /* ================================================================= */
 /* Vars */
 :root {
-  --bg-dark: #2f2f2f;
-  --bg-danger: #ff3562;
-  --bg-danger-hover: #fd2554;
-  --bg-light: #fefbfc;
+  --primary: #ff3562;
+  --primary-hover: #fd2554;
+  --bg-primary: #fefbfc;
+  --text-primary: #2f2f2f;
+  --text-secondary: #fefbfc;
   --bg-success: #0a8754;
   --bg-success-hover: #097248;
   --bg-info: #0197f6;
-  --text-primary: #2f2f2f;
-  --text-secondary: #ffffff;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+::-moz-selection {
+  background: var(--primary);
+  color: var(--text-secondary);
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--text-secondary);
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
 @import url('https://use.fontawesome.com/releases/v5.15.3/css/all.css');
 /* ================================================================= */
 /* Resets etc */
@@ -25,9 +37,11 @@
 
 html,
 body {
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Nunito', sans-serif;
   font-size: large;
   line-height: 1.5rem;
+  background-color: var(--bg-primary);
 }
 
 a {
@@ -44,7 +58,7 @@ a {
   align-items: center;
 }
 
-.centerChildren {
+.center-children {
   display: flex;
   justify-content: center;
   margin: 2rem 0;
@@ -57,9 +71,16 @@ a {
   color: var(--bg-secondary);
   margin: 1rem;
   font-size: 1rem;
+  cursor: pointer;
 }
 
-input[type='button'].btn {
+.btn-large {
+  width: 200px;
+  height: 75px;
+}
+
+input[type='button'].btn,
+input[type='submit'].btn {
   border-radius: 5px;
   outline: none;
   border: 0;
@@ -75,16 +96,20 @@ input[type='button'].btn {
 }
 
 .btn-danger {
-  background: var(--bg-danger);
+  background: var(--primary);
   color: var(--text-secondary);
 }
 
 .btn-danger:hover {
-  background: var(--bg-danger-hover);
+  background: var(--primary-hover);
 }
 
 br {
   margin-bottom: 2rem;
+}
+
+h1 {
+  line-height: 2.5rem;
 }
 
 p {

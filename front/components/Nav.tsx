@@ -7,7 +7,7 @@ import styles from '../styles/Nav.module.css';
 const Nav = () => {
   const router = useRouter();
 
-  const currentPath = router.pathname.slice(1);
+  const currentPath = router.pathname.slice(1).split('/')[0];
 
   return (
     <nav className={styles.nav}>
@@ -20,6 +20,11 @@ const Nav = () => {
         <li className={currentPath === 'about' ? styles.active : ''}>
           <Link href="/about">
             <a>About</a>
+          </Link>
+        </li>
+        <li className={currentPath === 'blog' ? styles.active : ''}>
+          <Link href="/blog">
+            <a>Blog</a>
           </Link>
         </li>
         <li className={currentPath === 'contact' ? styles.active : ''}>

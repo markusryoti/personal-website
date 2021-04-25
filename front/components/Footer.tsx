@@ -14,6 +14,9 @@ const Footer = () => {
           <i className="fab fa-2x fa-instagram"></i>
         </a>
         <a href="#">
+          <i className="fab fa-2x fa-github"></i>
+        </a>
+        <a href="#">
           <i className="fas fa-2x fa-envelope"></i>
         </a>
       </div>
