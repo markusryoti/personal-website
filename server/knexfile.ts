@@ -1,14 +1,23 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-export default {
+interface KnexConfig {
+  [key: string]: object;
+}
+
+const config: KnexConfig = {
   development: {
     client: 'pg',
     connection: {
+      host: process.env.POSTGRES_DB,
       database: process.env.POSTGRES_DB,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
-      port: process.env.DB_PORT,
+      port: 5432,
+    },
+    pool: {
+      min: 0,
+      max: 10,
     },
     migrations: {
       directory: './db/migrations',
@@ -21,10 +30,15 @@ export default {
     client: 'pg',
     connection: {
       // This should be created on startup
+      host: process.env.POSTGRES_DB,
       database: process.env.POSTGRES_TEST_DB,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
-      port: process.env.DB_PORT,
+      port: 5432,
+    },
+    pool: {
+      min: 0,
+      max: 10,
     },
     migrations: {
       directory: './db/migrations',
@@ -34,3 +48,5 @@ export default {
     },
   },
 };
+
+export default config;

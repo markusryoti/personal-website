@@ -3,16 +3,6 @@ import axios from 'axios';
 import tableNames from '../../src/constants/tableNames';
 
 export async function seed(knex: Knex): Promise<void> {
-  //   // Deletes ALL existing entries
-  //   await knex('table_name').del();
-
-  //   // Inserts seed entries
-  //   await knex('table_name').insert([
-  //     { id: 1, colName: 'rowValue1' },
-  //     { id: 2, colName: 'rowValue2' },
-  //     { id: 3, colName: 'rowValue3' },
-  //   ]);
-
   await knex(tableNames.users).del();
   await knex(tableNames.posts).del();
 
@@ -31,7 +21,7 @@ async function getUsers() {
     const firstName = nameParts[0];
     const lastName = nameParts.length > 2 ? nameParts[2] : nameParts[1];
     const { email, username } = user;
-    const randomPassword = Math.random().toString(36).substring(30);
+    const randomPassword = Math.random().toString(36).substring(7);
 
     return {
       first_name: firstName,

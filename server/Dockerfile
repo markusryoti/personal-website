@@ -6,6 +6,9 @@ COPY package*.json ./
 
 RUN npm i
 
+# For migrate/seeds
+RUN npm i -g knex
+
 COPY . .
 
 RUN npm run build
@@ -14,4 +17,4 @@ WORKDIR /usr/src/app/build
 
 EXPOSE 5000
 
-CMD ["node", "index.js"]
+CMD node src/index.js
