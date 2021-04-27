@@ -1,0 +1,89 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"title": "User", 
+	"type": "object",
+	"required": [
+		"email",
+		"username",
+		"password"
+	],
+	"properties": {
+		"id": {
+			"$id": "#root/id", 
+			"title": "Id", 
+			"type": "integer",
+			"examples": [
+				1
+			]
+		},
+		"email": {
+			"$id": "#root/email", 
+			"title": "Email", 
+			"type": "string",
+			"examples": [
+				"Sincere@april.biz"
+			],
+			"pattern": "^.*$"
+		},
+		"username": {
+			"$id": "#root/username", 
+			"title": "Username", 
+			"type": "string",
+			"examples": [
+				"Bret"
+			],
+			"pattern": "^.*$"
+		},
+		"first_name": {
+			"$id": "#root/first_name", 
+			"title": "First_name", 
+			"type": "string",
+			"examples": [
+				"Leanne"
+			],
+			"pattern": "^.*$"
+		},
+		"last_name": {
+			"$id": "#root/last_name", 
+			"title": "Last_name", 
+			"type": "string",
+			"examples": [
+				"Graham"
+			],
+			"pattern": "^.*$"
+		},
+		"password": {
+			"$id": "#root/password", 
+			"title": "Password", 
+			"type": "string",
+			"examples": [
+				"7ldskf"
+			],
+			"pattern": "^.*$"
+		},
+		"last_login": {
+			"$id": "#root/last_login", 
+			"title": "Last_login", 
+			"type": "null",
+			"default": null
+		},
+		"created_at": {
+			"$id": "#root/created_at", 
+			"title": "Created_at", 
+			"type": "string",
+			"examples": [
+				"2021-04-27T19:43:57.264Z"
+			],
+			"pattern": "^.*$"
+		},
+		"updated_at": {
+			"$id": "#root/updated_at", 
+			"title": "Updated_at", 
+			"type": "string",
+			"examples": [
+				"2021-04-27T19:43:57.264Z"
+			],
+			"pattern": "^.*$"
+		}
+	}
+}

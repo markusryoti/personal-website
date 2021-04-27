@@ -10,12 +10,16 @@ Api and database are containerized with docker-compose. Environment variables in
 
 ### Run on background
 
-`docker-compose up`
+`docker-compose up -d`
 
 ### Do database migrations
 
-`docker exec -it personal_site_api npm run migrate`
+`docker exec -it api npm run migrate`
 
 ### Seed database in development
 
-`docker exec -it personal_site_api npm run seed`
+`docker exec -it api npm run seed`
+
+### Stop
+
+`docker-compose down`

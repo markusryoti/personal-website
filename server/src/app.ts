@@ -2,7 +2,11 @@ import express from 'express';
 
 import api from './api/index';
 
+import { errorHandler, notFound } from './middlewares';
+
 const app = express();
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json({
@@ -11,5 +15,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1', api);
+
+app.use(notFound);
+app.use(errorHandler);
 
 export default app;

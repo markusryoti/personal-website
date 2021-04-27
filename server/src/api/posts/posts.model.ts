@@ -2,19 +2,19 @@ import { Model } from 'objection';
 
 import tableNames from '../../constants/tableNames';
 
+import schema from './posts.schema.json';
+
 class Posts extends Model {
   static get tableName() {
     return tableNames.posts;
   }
 
-  // TODO
-  // Add schema
-  // static get jsonSchema() {
-  //   return schema
-  // }
+  static get jsonSchema() {
+    return schema;
+  }
 
   static get relationMappings() {
-    const User = require('../users/users.models');
+    const User = require('../users/users.model');
     return {
       users: {
         relation: Model.HasManyRelation,
