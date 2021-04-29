@@ -3,10 +3,6 @@ const errorTypes = {
   UniqueViolationError: 409,
 };
 
-const errorMessages = {
-  UniqueViolationError: 'Record already exists.',
-};
-
 export function notFound(req: any, res: any, next: any) {
   const error = new Error(`Not found - ${req.originalUrl}`);
   res.status(404);
@@ -14,7 +10,18 @@ export function notFound(req: any, res: any, next: any) {
 }
 
 export function errorHandler(error: any, req: any, res: any, next: any) {
-  res.status(500);
+  // Shouldn't be any other type at this point
+  let statusCode;
+  try {
+    const errorName: 'ValidationError' | 'UniqueViolationError' = error.name;
+    statusCode =
+      res.statusCode === 200 ? errorTypes[errorName] || 500 : res.statusCode;
+  } catch (error) {
+    statusCode = 500;
+  }
+
+  res.status(statusCode);
+
   res.json({
     message: error.message,
     stack:

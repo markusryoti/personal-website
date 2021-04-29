@@ -12,7 +12,7 @@ export async function seed(knex: Knex): Promise<void> {
 
 async function getUsers() {
   const res = await axios.get(
-    'http://jsonplaceholder.typicode.com/users/?limit=10'
+    'http://jsonplaceholder.typicode.com/users?_limit=5'
   );
   const users = res.data;
 
@@ -36,7 +36,7 @@ async function getUsers() {
 
 async function getPosts() {
   const postRes = await axios.get(
-    'http://jsonplaceholder.typicode.com/posts/?limit=50'
+    'http://jsonplaceholder.typicode.com/posts?_limit=10'
   );
   const posts = postRes.data;
 

@@ -1,7 +1,7 @@
 const names = {
   users: 'users',
   posts: 'posts',
-  comments: '',
+  comments: 'comments',
   threads: 'threads',
   imageUrls: 'image_urls',
 };
