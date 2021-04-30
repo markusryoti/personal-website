@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 interface Payload {
   id: number | undefined;
-  name: string | undefined;
+  username: string | undefined;
   email: string | undefined;
 }
 

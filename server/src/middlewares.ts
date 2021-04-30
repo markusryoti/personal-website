@@ -1,3 +1,7 @@
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
+
 const errorTypes = {
   ValidationError: 422,
   UniqueViolationError: 409,
@@ -29,5 +33,19 @@ export function errorHandler(error: any, req: any, res: any, next: any) {
         ? 'Something went wrong in the server'
         : error.stack,
     errors: error.errors || undefined,
+  });
+}
+
+export function authenticateToken(req: any, res: any, next: any) {
+  const token = req.headers['authorization'];
+  const secret = process.env.JWT_SECRET!;
+  jwt.verify(token, secret, (err: any, user: any) => {
+    if (err) {
+      const error = new Error(`Not authenticated`);
+      res.status(403);
+      next(error);
+    }
+    req.user = user;
+    next();
   });
 }

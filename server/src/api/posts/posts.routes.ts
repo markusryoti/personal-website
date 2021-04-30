@@ -1,4 +1,5 @@
 import express from 'express';
+import { authenticateToken } from '../../middlewares';
 import Posts from './posts.model';
 
 const router = express.Router();
@@ -22,7 +23,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', authenticateToken, async (req, res, next) => {
   try {
     const newPost = await Posts.query().insert(req.body);
     res.json(newPost);

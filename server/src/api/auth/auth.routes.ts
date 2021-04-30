@@ -1,8 +1,9 @@
 import express from 'express';
-
 import bcrypt from 'bcrypt';
-
 import jwt from '../../lib/jwt';
+import dotenv from 'dotenv';
+dotenv.config();
+
 import Users from '../users/users.model';
 
 const router = express.Router();
@@ -10,10 +11,18 @@ const router = express.Router();
 const ERRORS_MSGS = {
   invalidLogin: 'Login is invalid',
   emailInUse: 'Email is already in use.',
+  registerToken: 'No correct register token provided',
 };
 
 router.post('/signup', async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { username, email, password, registerToken } = req.body;
+
+  // Check if the provided token for registration matches the environment token
+  // If not, new user cannot be added
+  if (registerToken !== process.env.REGISTER_TOKEN) {
+    res.status(401);
+    next(new Error(ERRORS_MSGS.registerToken));
+  }
 
   try {
     const existingUser = await Users.query().where({ email }).first();
@@ -26,7 +35,7 @@ router.post('/signup', async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const insertedUser = await Users.query().insert({
-      name,
+      username,
       email,
       password: hashedPassword,
     });
@@ -35,7 +44,7 @@ router.post('/signup', async (req, res, next) => {
 
     const payload = {
       id: insertedUser.id,
-      name,
+      username,
       email,
     };
 
@@ -50,7 +59,7 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-router.post('/signin', async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const user = await Users.query().where({ email }).first();
@@ -74,7 +83,7 @@ router.post('/signin', async (req, res, next) => {
 
     const payload = {
       id: user.id,
-      name: user.name,
+      username: user.username,
       email,
     };
 
@@ -89,4 +98,4 @@ router.post('/signin', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;

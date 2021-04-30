@@ -6,7 +6,9 @@ import schema from './users.schema.json';
 
 class Users extends Model {
   id?: number;
-  name?: string;
+  fist_name?: string;
+  last_name?: string;
+  username?: string;
   email?: string;
   password?: string;
 
