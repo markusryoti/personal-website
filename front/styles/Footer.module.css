@@ -13,3 +13,13 @@
 .footer a {
   margin: 0 1rem;
 }
+
+.footer ::-moz-selection {
+  background: var(--text-secondary);
+  color: var(--primary);
+}
+
+.footer ::selection {
+  background: var(--text-secondary);
+  color: var(--primary);
+}
