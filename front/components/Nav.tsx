@@ -36,7 +36,7 @@ function useWindowDimensions() {
   return windowDimensions;
 }
 
-const Nav = () => {
+const Nav = ({ user }) => {
   const router = useRouter();
   const { height, width } = useWindowDimensions();
   const [linksVisible, setLinksVisible] = useState(width > 600 ? true : false);
@@ -88,6 +88,13 @@ const Nav = () => {
                 <a>Contact</a>
               </Link>
             </li>
+            {user && (
+              <li>
+                <Link href="#">
+                  <a href="">{user}</a>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       )}

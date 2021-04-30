@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Nav from '../components/Nav';
 
-import styles from '../styles/Login.module.css';
+import axios from 'axios';
 
-const login = () => {
+import styles from '../styles/Login.module.css';
+import router from 'next/router';
+
+const login = ({ user, setUser }) => {
+  const [formValues, setFormValues] = useState({ email: '', password: '' });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.currentTarget;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        'http://localhost:5001/api/v1/auth/login/',
+        formValues
+      );
+      if (res.status === 200) {
+        setUser(res.data.user);
+        localStorage.setItem('token', res.data.token);
+        router.push('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Nav />
@@ -11,10 +39,25 @@ const login = () => {
         <div className="container">
           <form className={styles.form}>
             <label htmlFor="email">Email</label>
-            <input type="text" id="email" />
+            <input
+              type="text"
+              id="email"
+              name="email"
+              onChange={handleChange}
+            />
             <label htmlFor="password">Password</label>
-            <input type="text" id="password" />
-            <input type="submit" value="Login" className="btn btn-success" />
+            <input
+              type="text"
+              id="password"
+              name="password"
+              onChange={handleChange}
+            />
+            <input
+              type="submit"
+              value="Login"
+              className="btn btn-success"
+              onClick={handleLogin}
+            />
           </form>
         </div>
       </div>
