@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 
 import api from './api/index';
@@ -8,6 +9,7 @@ const app = express();
 
 app.disable('x-powered-by');
 
+app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 app.get('/', (req, res) => {

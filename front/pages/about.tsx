@@ -4,10 +4,10 @@ import Nav from '../components/Nav';
 
 import styles from '../styles/About.module.css';
 
-const about = () => {
+const about = ({ user }) => {
   return (
     <>
-      <Nav />
+      <Nav user={user} />
       <div className={styles.center}>
         <div className="container">
           <h1 className={styles.heading}>Lorem ipsum dolor sit amet.</h1>

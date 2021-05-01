@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import Users from '../users/users.model';
+import { authenticateToken } from '../../middlewares';
 
 const router = express.Router();
 
@@ -60,8 +61,9 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  const { email, password } = req.body;
   try {
+    const { email, password } = req.body;
+
     const user = await Users.query().where({ email }).first();
 
     if (!user) {
@@ -70,10 +72,7 @@ router.post('/login', async (req, res, next) => {
       throw error;
     }
 
-    const validPassword = await bcrypt.compare(
-      password,
-      user.password as string
-    );
+    const validPassword = await bcrypt.compare(password, user.password!);
 
     if (!validPassword) {
       const error = new Error(ERRORS_MSGS.invalidLogin);
@@ -97,5 +96,22 @@ router.post('/login', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get(
+  '/load-user',
+  authenticateToken,
+  async (req: any, res: any, next) => {
+    try {
+      const user = req.user;
+      const dbUser = await Users.query().findById(user.id);
+
+      delete dbUser.password;
+
+      res.json(dbUser);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 export default router;

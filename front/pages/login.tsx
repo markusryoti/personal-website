@@ -34,7 +34,7 @@ const login = ({ user, setUser }) => {
 
   return (
     <>
-      <Nav />
+      <Nav user={user} />
       <div className="center-children">
         <div className="container">
           <form className={styles.form}>

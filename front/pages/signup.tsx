@@ -3,10 +3,10 @@ import Nav from '../components/Nav';
 
 import styles from '../styles/Signup.module.css';
 
-const signup = () => {
+const signup = ({ user }) => {
   return (
     <>
-      <Nav />
+      <Nav user={user} />
       <div className="center-children">
         <div className="container">
           <form className={styles.form}>

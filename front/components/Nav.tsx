@@ -88,15 +88,18 @@ const Nav = ({ user }) => {
                 <a>Contact</a>
               </Link>
             </li>
-            {user && (
+            {user && width < 650 && (
               <li>
                 <Link href="#">
-                  <a href="">{user}</a>
+                  <a href="">{user.username}</a>
                 </Link>
               </li>
             )}
           </ul>
         </div>
+      )}
+      {user && width > 650 && (
+        <div className={styles.user}>{user.username}</div>
       )}
     </nav>
   );

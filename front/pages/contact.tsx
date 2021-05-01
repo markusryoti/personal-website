@@ -4,10 +4,10 @@ import Nav from '../components/Nav';
 
 import styles from '../styles/Contact.module.css';
 
-const contact = () => {
+const contact = ({ user }) => {
   return (
     <>
-      <Nav />
+      <Nav user={user} />
       <div className="center-children">
         <div className="container">
           <h1>Let's get in touch.</h1>

@@ -4,10 +4,10 @@ import Nav from '../../components/Nav';
 
 import styles from '../../styles/Blog.module.css';
 
-const blog = () => {
+const blog = ({ user }) => {
   return (
     <>
-      <Nav />
+      <Nav user={user} />
       <div className="center-children">
         <div className="container">
           <h1 className={styles.heading}>All posts</h1>

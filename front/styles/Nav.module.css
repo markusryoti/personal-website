@@ -80,6 +80,13 @@
   display: none !important;
 }
 
+.user {
+  color: var(--text-secondary);
+  position: absolute;
+  top: 1.75rem;
+  right: 2rem;
+}
+
 @media only screen and (max-width: 600px) {
   .nav {
     padding: 1rem 0;

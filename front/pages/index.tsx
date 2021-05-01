@@ -5,10 +5,10 @@ import Hero from '../components/Hero';
 import Nav from '../components/Nav';
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
+export default function Home({ user }) {
   return (
     <div>
-      <Nav />
+      <Nav user={user} />
       <Hero />
       <main className={styles.main}>
         <div className={styles.textBlock}>
