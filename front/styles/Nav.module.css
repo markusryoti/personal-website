@@ -80,11 +80,35 @@
   display: none !important;
 }
 
-.user {
+.loggedInLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--text-secondary);
   position: absolute;
-  top: 1.75rem;
+  top: 0;
   right: 2rem;
+  height: 5rem;
+}
+
+.loggedInLinks div {
+  padding: 0 0.5rem;
+}
+
+.loggedInLinks div.newPostButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.loggedInLinks div.newPostButton a {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-info);
+  border-radius: 5px;
+  padding: 0.5rem;
 }
 
 @media only screen and (max-width: 600px) {

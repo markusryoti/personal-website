@@ -89,17 +89,31 @@ const Nav = ({ user }) => {
               </Link>
             </li>
             {user && width < 650 && (
-              <li>
-                <Link href="#">
-                  <a href="">{user.username}</a>
-                </Link>
-              </li>
+              <>
+                <li>
+                  <Link href="blog/newpost">
+                    <a>New Post</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#">
+                    <a>{user.username}</a>
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
         </div>
       )}
       {user && width > 650 && (
-        <div className={styles.user}>{user.username}</div>
+        <div className={styles.loggedInLinks}>
+          <div className={styles.newPostButton}>
+            <Link href="blog/newpost">
+              <a>New Post</a>
+            </Link>
+          </div>
+          <div>{user.username}</div>
+        </div>
       )}
     </nav>
   );
