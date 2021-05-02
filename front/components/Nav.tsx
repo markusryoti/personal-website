@@ -41,7 +41,7 @@ const Nav = ({ user }) => {
   const { height, width } = useWindowDimensions();
   const [linksVisible, setLinksVisible] = useState(width > 600 ? true : false);
 
-  const currentPath = router.pathname.slice(1).split('/')[0];
+  const currentPath = router.route.slice(1).split('/')[0];
 
   const handleBurgerClick = () => {
     setLinksVisible(!linksVisible);

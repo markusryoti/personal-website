@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import '../styles/globals.css';
-import { useRouter } from 'next/router';
 import EditorState from '../context/EditorState';
 
 export interface IUser {
@@ -15,14 +14,13 @@ export interface IUser {
 
 function setAuthToken(token: string) {
   if (token) {
-    axios.defaults.headers.common['authorization'] = token;
+    axios.defaults.headers.common['Authorization'] = token;
   } else {
-    delete axios.defaults.headers.common['authorization'];
+    delete axios.defaults.headers.common['Authorization'];
   }
 }
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
@@ -39,7 +37,7 @@ function MyApp({ Component, pageProps }) {
             const user = res.data;
             setUser(user);
             setAuthToken(token);
-            router.push('/');
+            return;
           }
           // Invalid token
           setAuthToken('');

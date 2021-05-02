@@ -9,6 +9,7 @@
   --bg-success: #0a8754;
   --bg-success-hover: #097248;
   --bg-info: #0197f6;
+  --bg-info-hover: #0069aa;
 }
 
 ::-moz-selection {
@@ -62,6 +63,7 @@ a {
 .center-children {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 2rem 0;
 }
 
@@ -103,6 +105,15 @@ input[type='submit'].btn {
 
 .btn-danger:hover {
   background: var(--primary-hover);
+}
+
+.btn-info {
+  background: var(--bg-info);
+  color: var(--text-secondary);
+}
+
+.btn-info:hover {
+  background: var(--bg-info-hover);
 }
 
 h1 {

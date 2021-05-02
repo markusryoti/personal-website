@@ -29,7 +29,6 @@ const newpost = ({ user }) => {
         formData
       );
       if (res.status === 200) {
-        console.log(res.data);
         router.push('/');
       }
     } catch (error) {
