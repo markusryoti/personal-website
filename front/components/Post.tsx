@@ -12,9 +12,7 @@ const Post = ({ user, post }) => {
 
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(
-        `http://localhost:5001/api/v1/posts/${post.id}`
-      );
+      const res = await axios.delete(`${process.env.API_URL}/posts/${post.id}`);
       if (res.status === 200) {
         router.push('/blog');
       }

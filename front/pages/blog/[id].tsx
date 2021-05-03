@@ -21,9 +21,7 @@ const post = ({ user, post }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const res = await axios.get(
-    `http://localhost:5001/api/v1/posts/${params.id}`
-  );
+  const res = await axios.get(`${process.env.API_URL}/posts/${params.id}`);
   const post = res.data;
 
   return {

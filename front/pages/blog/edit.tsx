@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import dynamic from 'next/dynamic';
 
@@ -28,11 +28,9 @@ const editpost = ({ user }) => {
       body: html,
     };
 
-    console.log(postToEdit);
-
     try {
       const res = await axios.patch(
-        `http://localhost:5001/api/v1/posts/${postToEdit.id}`,
+        `${process.env.API_URL}/posts/${postToEdit.id}`,
         formData
       );
       if (res.status === 200) {

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const posts = await Posts.query().orderBy('id', 'desc');
+    const posts = await Posts.query().orderBy('created_at', 'desc');
     res.json(posts);
   } catch (error) {
     next(error);

@@ -25,7 +25,7 @@ const contact = ({ user }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const res = await axios.post(`http://localhost:5001/api/v1/mail`, formData);
+    const res = await axios.post(`${process.env.API_URL}/mail`, formData);
     if (res.status === 200) {
       router.push('/thankyou');
     }

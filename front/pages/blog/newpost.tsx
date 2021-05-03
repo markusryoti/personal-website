@@ -24,10 +24,7 @@ const newpost = ({ user }) => {
     const formData = { user_id: user.id, title: postName, body: html };
 
     try {
-      const res = await axios.post(
-        'http://localhost:5001/api/v1/posts',
-        formData
-      );
+      const res = await axios.post(`${process.env.API_URL}/posts`, formData);
       if (res.status === 200) {
         router.push('/blog');
       }

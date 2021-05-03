@@ -15,7 +15,7 @@ const blog = ({ posts, user }) => {
           {posts.length > 0 ? (
             posts.map(post => <PostPreview key={post.id} post={post} />)
           ) : (
-            <p>No Posts Yet!</p>
+            <h1>No Posts Yet!</h1>
           )}
         </div>
       </div>
@@ -25,7 +25,7 @@ const blog = ({ posts, user }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await axios.get('http://localhost:5001/api/v1/posts/');
+  const res = await axios.get(`${process.env.API_URL}/posts/`);
   const posts = res.data;
 
   return {

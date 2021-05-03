@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
     const token = localStorage.getItem('token');
     if (token && !user) {
       axios
-        .get('http://localhost:5001/api/v1/auth/load-user', {
+        .get(`${process.env.API_URL}/auth/load-user`, {
           headers: {
             Authorization: token,
           },
