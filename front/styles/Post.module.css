@@ -1,0 +1,19 @@
+.center {
+  flex-direction: column;
+}
+
+.postContent {
+  width: 100%;
+}
+
+.postContent h1 {
+  margin: 2rem 0;
+}
+
+.postContent p {
+  margin: 0;
+}
+
+.actionButtonContainer {
+  display: flex;
+}

@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import styles from '../styles/Nav.module.css';
+import { EditorContext } from '../context/EditorState';
 
 function getWindowDimensions() {
   // make sure your function is being called in client side only
@@ -40,6 +41,9 @@ const Nav = ({ user }) => {
   const router = useRouter();
   const { height, width } = useWindowDimensions();
   const [linksVisible, setLinksVisible] = useState(width > 600 ? true : false);
+
+  const editorContext = useContext(EditorContext);
+  const { setPostToEdit } = editorContext;
 
   const currentPath = router.route.slice(1).split('/')[0];
 
@@ -90,8 +94,12 @@ const Nav = ({ user }) => {
             </li>
             {user && width < 650 && (
               <>
-                <li>
-                  <Link href="blog/newpost">
+                <li
+                  onClick={() => {
+                    setPostToEdit(null);
+                  }}
+                >
+                  <Link href="/blog/newpost">
                     <a>New Post</a>
                   </Link>
                 </li>
@@ -107,8 +115,13 @@ const Nav = ({ user }) => {
       )}
       {user && width > 650 && (
         <div className={styles.loggedInLinks}>
-          <div className={styles.newPostButton}>
-            <Link href="blog/newpost">
+          <div
+            className={styles.newPostButton}
+            onClick={() => {
+              setPostToEdit(null);
+            }}
+          >
+            <Link href="/blog/newpost">
               <a>New Post</a>
             </Link>
           </div>

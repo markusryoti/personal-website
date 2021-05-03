@@ -1,0 +1,13 @@
+.heading {
+  margin: 2rem 0;
+}
+
+.newPostLabel {
+  margin: 1rem 0;
+}
+
+.postName {
+  height: 2rem;
+  padding: 0.5rem;
+  width: 90%;
+}

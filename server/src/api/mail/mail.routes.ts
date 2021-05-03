@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.post('/', async (req, res, next) => {
   try {
-    const { sender, subject, text } = req.body;
-    await sendMail(sender, subject, text);
+    const { name, email, subject, category, message } = req.body;
+    await sendMail(name, email, subject, category, message);
     res.json({ message: 'Email sent' });
   } catch (error) {
     next(error);

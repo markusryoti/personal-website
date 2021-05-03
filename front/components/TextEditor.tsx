@@ -14,9 +14,33 @@ import { EditorContext } from '../context/EditorState';
 
 const TextEditor = () => {
   const [quill, setQuill] = useState(null);
+  const [initialValue, setInitialValue] = useState('');
 
   const editorContext = useContext(EditorContext);
-  const { setHtml } = editorContext;
+  const { setHtml, postToEdit, setPostToEdit } = editorContext;
+
+  useEffect(() => {
+    if (postToEdit) {
+      setInitialValue(postToEdit.body);
+    }
+
+    return () => {
+      setPostToEdit(null);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!quill) return;
+
+    if (initialValue) {
+      // const delta = quill.clipboard.convert({ html: initialValue });
+      // quill.setContents(delta, 'silent');
+
+      // This is not how this should be done!
+      // Fix later
+      quill.container.firstChild.innerHTML = initialValue;
+    }
+  }, [initialValue]);
 
   const wrapperRef = useCallback(wrapper => {
     if (wrapper === null) return;
@@ -30,6 +54,16 @@ const TextEditor = () => {
       theme: 'snow',
       modules: { toolbar: TOOLBAR_OPTIONS },
     });
+
+    if (initialValue) {
+      // const delta = q.clipboard.convert({ html: initialValue });
+      // q.setContents(delta, 'silent');
+
+      // This is not how this should be done!
+      // Fix later
+      quill.container.firstChild.innerHTML = initialValue;
+    }
+
     setQuill(q);
   }, []);
 

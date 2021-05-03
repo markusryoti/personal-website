@@ -21,7 +21,13 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({ refresh_token: GOOGLE_REFRESH_TOKEN });
 
-export async function sendMail(from: string, subject: string, text: string) {
+export async function sendMail(
+  name: string,
+  email: string,
+  subject: string,
+  category: string,
+  message: string
+) {
   try {
     const accessToken = await oAuth2Client.getAccessToken();
 
@@ -38,12 +44,12 @@ export async function sendMail(from: string, subject: string, text: string) {
     });
 
     const mailOptions: Mail.Options = {
-      from: from,
+      from: email,
       to: EMAIL_ADDRESS,
-      replyTo: from,
+      replyTo: email,
       subject: subject,
-      text: text,
-      html: textToHtml(from, subject, text),
+      text: message,
+      html: textToHtml(name, email, subject, category, message),
     };
 
     const result = await transport.sendMail(mailOptions);
@@ -53,10 +59,19 @@ export async function sendMail(from: string, subject: string, text: string) {
   }
 }
 
-function textToHtml(sender: string, subject: string, body: string) {
+function textToHtml(
+  name: string,
+  email: string,
+  subject: string,
+  category: string,
+  body: string
+) {
   return `
     <h2>${subject}</h2>
-    <h4>From: ${sender}</h4>
+    <h4>Category: ${category}</h4>
+    <h4>Name: ${name}</h4>
+    <h4>Email: ${email}</h4>
+    <br>
     ${body
       .split('\n')
       .map(paragraph => (paragraph ? `<p>${paragraph}</p>` : '<p></p>'))

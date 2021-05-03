@@ -14,7 +14,7 @@ const post = ({ user, post }) => {
         <title>{post.title}</title>
       </Head>
       <Nav user={user} />
-      <Post post={post} />
+      <Post post={post} user={user} />
       <Footer />
     </>
   );

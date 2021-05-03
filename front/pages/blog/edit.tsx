@@ -1,31 +1,38 @@
-import React, { useContext, useState } from 'react';
-import Footer from '../../components/Footer';
-import Nav from '../../components/Nav';
+import React, { useContext, useEffect, useState } from 'react';
 
 import dynamic from 'next/dynamic';
 
-import styles from '../../styles/NewPost.module.css';
-import { EditorContext } from '../../context/EditorState';
+import styles from '../../styles/EditPost.module.css';
 import axios from 'axios';
-import router from 'next/router';
+import { useRouter } from 'next/router';
+import Nav from '../../components/Nav';
+import Footer from '../../components/Footer';
+import { EditorContext } from '../../context/EditorState';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('../../components/TextEditor'),
-  { ssr: false, loading: () => <p>Loading ...</p> }
+  { ssr: false, loading: () => <p>Loading...</p> }
 );
 
-const newpost = ({ user }) => {
-  const [postName, setPostName] = useState('');
+const editpost = ({ user }) => {
+  const router = useRouter();
 
   const editorContext = useContext(EditorContext);
-  const { html } = editorContext;
+  const { html, postToEdit, setPostToEdit } = editorContext;
 
   const handleSubmit = async () => {
-    const formData = { user_id: user.id, title: postName, body: html };
+    const formData = {
+      id: postToEdit.id,
+      user_id: user.id,
+      title: postToEdit.title,
+      body: html,
+    };
+
+    console.log(postToEdit);
 
     try {
-      const res = await axios.post(
-        'http://localhost:5001/api/v1/posts',
+      const res = await axios.patch(
+        `http://localhost:5001/api/v1/posts/${postToEdit.id}`,
         formData
       );
       if (res.status === 200) {
@@ -41,7 +48,7 @@ const newpost = ({ user }) => {
       <Nav user={user} />
       <div className="center-children">
         <div className="container">
-          <h1 className={styles.heading}>New Post</h1>
+          <h1 className={styles.heading}>Edit Post</h1>
           <label htmlFor="postname" className={styles.newPostLabel}>
             Post Name
           </label>
@@ -50,14 +57,17 @@ const newpost = ({ user }) => {
             name="postname"
             id="postname"
             className={styles.postName}
-            onChange={e => setPostName(e.target.value)}
+            value={postToEdit.title}
+            onChange={e =>
+              setPostToEdit({ ...postToEdit, title: e.target.value })
+            }
           />
           <DynamicComponentWithNoSSR />
           <input
             type="submit"
             name="submit"
             id="submit"
-            value="Publish"
+            value="Update"
             className="btn btn-success"
             onClick={handleSubmit}
           />
@@ -68,4 +78,4 @@ const newpost = ({ user }) => {
   );
 };
 
-export default newpost;
+export default editpost;

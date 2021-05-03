@@ -5,6 +5,11 @@ import tableNames from '../../constants/tableNames';
 import schema from './posts.schema.json';
 
 class Posts extends Model {
+  id?: number;
+  title?: string;
+  body?: string;
+  user_id?: any;
+
   static get tableName() {
     return tableNames.posts;
   }
