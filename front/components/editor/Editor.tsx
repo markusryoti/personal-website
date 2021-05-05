@@ -4,19 +4,16 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createEditor } from 'slate';
 
 // Import the Slate components and React plugin.
-import { Slate, Editable, withReact } from 'slate-react';
+import { Slate, Editable, withReact, DefaultElement } from 'slate-react';
+import { initialValue } from './InitialValue';
+import { CodeElement, Leaf } from './Rendering';
 
 import Toolbar from './Toolbar';
 
 const Editor = () => {
   const editor = useMemo(() => withReact(createEditor()), []);
   // Add the initial value when setting up our state.
-  const [value, setValue] = useState([
-    {
-      type: 'paragraph',
-      children: [{ text: 'A line of text in a paragraph.' }],
-    },
-  ] as any);
+  const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
     console.log(value);
@@ -54,35 +51,9 @@ const Editor = () => {
       value={value}
       onChange={(newValue) => setValue(newValue)}
     >
-      <Toolbar editor={editor} />
+      <Toolbar />
       <Editable renderElement={renderElement} renderLeaf={renderLeaf} />
     </Slate>
-  );
-};
-
-const CodeElement = (props) => {
-  return (
-    <pre {...props.attributes}>
-      <code>{props.children}</code>
-    </pre>
-  );
-};
-
-const DefaultElement = (props) => {
-  return <p {...props.attributes}>{props.children}</p>;
-};
-
-const Leaf = (props) => {
-  return (
-    <span
-      {...props.attributes}
-      style={{
-        fontWeight: props.leaf.bold ? 'bold' : 'normal',
-        fontStyle: props.leaf.italic ? 'italic' : 'normal',
-      }}
-    >
-      {props.children}
-    </span>
   );
 };
 

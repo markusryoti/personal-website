@@ -16,7 +16,6 @@
     "slate-react": "^0.62.0"
   },
   "devDependencies": {
-    "@types/quill": "^2.0.6",
     "@types/react": "^17.0.3",
     "typescript": "^4.2.4"
   }

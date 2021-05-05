@@ -1,7 +1,9 @@
 import React from 'react';
+import { useSlate } from 'slate-react';
 import CustomEditor from './CustomEditor';
 
-const Toolbar = ({ editor }) => {
+const Toolbar = () => {
+  const editor = useSlate();
   return (
     <div>
       <button
