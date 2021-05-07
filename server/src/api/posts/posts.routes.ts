@@ -26,7 +26,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', authenticateToken, async (req: any, res, next) => {
   try {
     const { content, title } = req.body;
-    const userId = req.user_id;
+    const userId = req.user.id;
     const newPost = await Posts.query().insert({
       content,
       title,
