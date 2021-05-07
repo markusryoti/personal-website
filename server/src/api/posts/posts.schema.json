@@ -4,7 +4,7 @@
 	"type": "object",
 	"required": [
 		"title",
-		"body",
+		"content",
 		"user_id"
 	],
 	"properties": {
@@ -25,9 +25,9 @@
 			],
 			"pattern": "^.*$"
 		},
-		"body": {
+		"content": {
 			"$id": "#root/body", 
-			"title": "Body", 
+			"title": "Post content as json", 
 			"type": "string",
 			"examples": [
 				"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"

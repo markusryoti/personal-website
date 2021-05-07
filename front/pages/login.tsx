@@ -26,7 +26,9 @@ const login = ({ user, setUser }) => {
         setUser(res.data.user);
         localStorage.setItem('token', res.data.token);
         router.push('/');
+        return;
       }
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +49,7 @@ const login = ({ user, setUser }) => {
             />
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               onChange={handleChange}

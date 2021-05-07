@@ -1,0 +1,15 @@
+.toolbarContainer {
+  display: flex;
+  height: 3rem;
+  border-bottom: 1px solid var(--text-primary);
+  background-color: whitesmoke;
+}
+
+.toolbarContainer button,
+.toolbarContainer select {
+  width: 3.5rem;
+  border-radius: 0;
+  background-color: whitesmoke;
+  border: none;
+  font-weight: 600;
+}

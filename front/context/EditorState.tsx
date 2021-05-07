@@ -1,9 +1,9 @@
 import { createContext, useReducer } from 'react';
 
 export interface IProvider {
-  html: string;
+  postContent: string;
   postToEdit: any;
-  setHtml: (html: string) => void;
+  setPostContent: (content: object) => void;
   setPostToEdit: (post: null) => void;
 }
 
@@ -11,10 +11,10 @@ export const EditorContext = createContext<IProvider | null>(null);
 
 function editorReducer(state, action) {
   switch (action.type) {
-    case 'SET_HTML':
+    case 'SET_CONTENT':
       return {
         ...state,
-        html: action.payload,
+        postContent: action.payload,
       };
     case 'SET_POST_TO_EDIT':
       return {
@@ -28,14 +28,14 @@ function editorReducer(state, action) {
 
 export default function EditorState(props) {
   const initialState = {
-    html: '',
+    postContent: '',
     postToEdit: null,
   };
 
   const [state, dispatch] = useReducer(editorReducer, initialState);
 
-  const setHtml = html => {
-    dispatch({ type: 'SET_HTML', payload: html });
+  const setPostContent = content => {
+    dispatch({ type: 'SET_CONTENT', payload: content });
   };
 
   const setPostToEdit = post => {
@@ -45,9 +45,9 @@ export default function EditorState(props) {
   return (
     <EditorContext.Provider
       value={{
-        html: state.html,
+        postContent: state.postContent,
         postToEdit: state.postToEdit,
-        setHtml,
+        setPostContent,
         setPostToEdit,
       }}
     >

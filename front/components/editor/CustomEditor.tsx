@@ -62,7 +62,7 @@ const CustomEditor = {
   toggleBoldMark(editor) {
     const isActive = CustomEditor.isBoldMarkActive(editor);
     Transforms.setNodes(editor, { bold: isActive ? null : true } as any, {
-      match: (n) => T.isText(n),
+      match: n => T.isText(n),
       split: true,
     });
   },
@@ -70,16 +70,20 @@ const CustomEditor = {
   toggleCodeBlock(editor) {
     const isActive = CustomEditor.isCodeBlockActive(editor);
     Transforms.setNodes(editor, { type: isActive ? null : 'code' } as any, {
-      match: (n) => Editor.isBlock(editor, n),
+      match: n => Editor.isBlock(editor, n),
     });
   },
 
   toggleItalicMark(editor) {
     const isActive = CustomEditor.isItalicMarkActive(editor);
     Transforms.setNodes(editor, { italic: isActive ? null : true } as any, {
-      match: (n) => T.isText(n),
+      match: n => T.isText(n),
       split: true,
     });
+  },
+
+  toggleHeading(editor, headingType) {
+    Transforms.setNodes(editor, { type: headingType });
   },
 };
 

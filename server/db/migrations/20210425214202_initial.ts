@@ -17,7 +17,7 @@ export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableNames.posts, table => {
     table.increments().notNullable();
     table.string('title', 254).notNullable().unique();
-    table.text('body').notNullable();
+    table.json('content').notNullable();
     table
       .integer('user_id')
       .unsigned()

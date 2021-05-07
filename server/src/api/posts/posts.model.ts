@@ -7,8 +7,8 @@ import schema from './posts.schema.json';
 class Posts extends Model {
   id?: number;
   title?: string;
-  body?: string;
-  user_id?: any;
+  content?: string;
+  user_id?: number;
 
   static get tableName() {
     return tableNames.posts;
