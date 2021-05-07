@@ -9,7 +9,7 @@ const Toolbar = () => {
   return (
     <div className={styles.toolbarContainer}>
       <button
-        onMouseDown={event => {
+        onMouseDown={(event) => {
           event.preventDefault();
           CustomEditor.toggleBoldMark(editor);
         }}
@@ -17,7 +17,7 @@ const Toolbar = () => {
         Bold
       </button>
       <button
-        onMouseDown={event => {
+        onMouseDown={(event) => {
           event.preventDefault();
           CustomEditor.toggleItalicMark(editor);
         }}
@@ -25,7 +25,7 @@ const Toolbar = () => {
         Italics
       </button>
       <button
-        onMouseDown={event => {
+        onMouseDown={(event) => {
           event.preventDefault();
           CustomEditor.toggleCodeBlock(editor);
         }}
@@ -33,18 +33,25 @@ const Toolbar = () => {
         Code
       </button>
       <select
-        onChange={event => {
+        onChange={(event) => {
           CustomEditor.toggleHeading(editor, event.target.value);
         }}
       >
-        <option value="p">p</option>
-        <option value="h1">h1</option>
-        <option value="h2">h2</option>
-        <option value="h3">h3</option>
-        <option value="h4">h4</option>
-        <option value="h5">h5</option>
-        <option value="h6">h6</option>
+        <option value='p'>p</option>
+        <option value='h1'>h1</option>
+        <option value='h2'>h2</option>
+        <option value='h3'>h3</option>
+        <option value='h4'>h4</option>
+        <option value='h5'>h5</option>
+        <option value='h6'>h6</option>
       </select>
+      <button
+        onClick={(event) => {
+          CustomEditor.toggleQuote(editor);
+        }}
+      >
+        Quote
+      </button>
     </div>
   );
 };

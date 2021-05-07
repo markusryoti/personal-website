@@ -30,7 +30,7 @@ const Editor = () => {
     setPostContent(value);
   }, [value]);
 
-  const renderElement = useCallback(props => {
+  const renderElement = useCallback((props) => {
     switch (props.element.type) {
       case 'h1':
         return <h1>{props.children}</h1>;
@@ -50,12 +50,14 @@ const Editor = () => {
         return <strong>{props.children}</strong>;
       case 'italic':
         return <em>{props.children}</em>;
+      case 'quote':
+        return <blockquote>{props.children}</blockquote>;
       default:
         return <DefaultElement {...props} />;
     }
   }, []);
 
-  const renderLeaf = useCallback(props => {
+  const renderLeaf = useCallback((props) => {
     return <Leaf {...props} />;
   }, []);
 
@@ -64,7 +66,7 @@ const Editor = () => {
       <Slate
         editor={editor}
         value={value}
-        onChange={newValue => setValue(newValue)}
+        onChange={(newValue) => setValue(newValue)}
       >
         <Toolbar />
         <div className={styles.textContainer}>

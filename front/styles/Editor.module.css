@@ -8,3 +8,10 @@
 .editorContainer .textContainer {
   padding: 1rem;
 }
+
+.editorContainer .textContainer blockquote {
+  margin-left: 50px;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+  font-style: italic;
+}
