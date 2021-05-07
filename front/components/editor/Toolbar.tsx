@@ -34,6 +34,7 @@ const Toolbar = () => {
       </button>
       <select
         onChange={(event) => {
+          event.preventDefault();
           CustomEditor.toggleHeading(editor, event.target.value);
         }}
       >
@@ -51,6 +52,20 @@ const Toolbar = () => {
         }}
       >
         Quote
+      </button>
+      <button
+        onClick={(e) => {
+          CustomEditor.toggleList(editor, 'ordered-list');
+        }}
+      >
+        ol
+      </button>
+      <button
+        onClick={(e) => {
+          CustomEditor.toggleList(editor, 'bullet-list');
+        }}
+      >
+        ul
       </button>
     </div>
   );

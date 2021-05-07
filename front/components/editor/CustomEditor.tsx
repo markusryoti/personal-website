@@ -18,10 +18,13 @@ export type HeadingElement = {
   children: CustomText[];
 };
 
-export type CustomElement = ParagraphElement | HeadingElement;
+export type ListElement = {
+  type: string;
+  children: any[];
+};
 
+export type CustomElement = ListElement | ParagraphElement | HeadingElement;
 export type FormattedText = { text: string; bold: boolean; italic: boolean };
-
 export type CustomText = FormattedText;
 
 declare module 'slate' {
@@ -31,6 +34,8 @@ declare module 'slate' {
     Text: CustomText;
   }
 }
+
+const LIST_TYPES = ['ordered-list', 'bullet-list'];
 
 const CustomEditor = {
   isBoldMarkActive(editor) {
@@ -42,9 +47,9 @@ const CustomEditor = {
     return !!match;
   },
 
-  isCodeBlockActive(editor) {
+  isBlockActive(editor, type) {
     const [match] = Editor.nodes(editor, {
-      match: (n: any) => n.type === 'code',
+      match: (n: any) => n.type === type,
     });
 
     return !!match;
@@ -68,7 +73,7 @@ const CustomEditor = {
   },
 
   toggleCodeBlock(editor) {
-    const isActive = CustomEditor.isCodeBlockActive(editor);
+    const isActive = CustomEditor.isBlockActive(editor, 'code');
     Transforms.setNodes(editor, { type: isActive ? null : 'code' } as any, {
       match: (n) => Editor.isBlock(editor, n),
     });
@@ -87,9 +92,31 @@ const CustomEditor = {
   },
 
   toggleQuote(editor) {
-    Transforms.setNodes(editor, { type: 'quote' } as any, {
+    const isActive = CustomEditor.isBlockActive(editor, 'quote');
+    Transforms.setNodes(editor, { type: isActive ? null : 'quote' } as any, {
       match: (n) => Editor.isBlock(editor, n),
     });
+  },
+
+  toggleList(editor, listType) {
+    const isActive = CustomEditor.isBlockActive(editor, listType);
+    const isList = LIST_TYPES.includes(listType);
+
+    Transforms.unwrapNodes(editor, {
+      match: (n) => LIST_TYPES.includes(!Editor.isEditor(n) && n.type),
+      split: true,
+    } as any);
+
+    const newProperties = {
+      type: isActive ? 'paragraph' : isList ? 'list-item' : listType,
+    } as any;
+
+    Transforms.setNodes(editor, newProperties);
+
+    if (!isActive && isList) {
+      const block = { type: listType, children: [] };
+      Transforms.wrapNodes(editor, block);
+    }
   },
 };
 

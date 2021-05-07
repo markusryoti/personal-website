@@ -33,25 +33,24 @@ const newpost = ({ user }) => {
   return (
     <>
       <Nav user={user} />
-      <div className="center-children">
-        <div className="container">
+      <div className='center-children'>
+        <div className='container'>
           <h1 className={styles.heading}>New Post</h1>
-          <label htmlFor="postname" className={styles.newPostLabel}>
+          <label htmlFor='postname' className={styles.newPostLabel}>
             Post Name
           </label>
           <input
-            type="text"
-            name="postname"
-            id="postname"
+            type='text'
+            name='postname'
+            id='postname'
             className={styles.postName}
-            onChange={e => setPostName(e.target.value)}
+            onChange={(e) => setPostName(e.target.value)}
           />
-          <label htmlFor="editor">Post</label>
           <Editor />
           <input
-            type="button"
-            className="btn btn-success"
-            value="Submit"
+            type='button'
+            className='btn btn-success'
+            value='Submit'
             onClick={onPostSubmit}
           />
         </div>
