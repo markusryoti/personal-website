@@ -38,12 +38,11 @@ declare module 'slate' {
 const LIST_TYPES = ['ordered-list', 'bullet-list'];
 
 const CustomEditor = {
-  isBoldMarkActive(editor) {
+  isMarkActive(editor, mark) {
     const [match] = Editor.nodes(editor, {
-      match: (n: any) => n.bold === true,
+      match: (n: any) => n[mark] === true,
       universal: true,
     });
-
     return !!match;
   },
 
@@ -51,51 +50,26 @@ const CustomEditor = {
     const [match] = Editor.nodes(editor, {
       match: (n: any) => n.type === type,
     });
-
     return !!match;
   },
 
-  isItalicMarkActive(editor) {
-    const [match] = Editor.nodes(editor, {
-      match: (n: any) => n.italic === true,
-      universal: true,
-    });
-
-    return !!match;
-  },
-
-  toggleBoldMark(editor) {
-    const isActive = CustomEditor.isBoldMarkActive(editor);
-    Transforms.setNodes(editor, { bold: isActive ? null : true } as any, {
+  toggleMark(editor, mark) {
+    const isActive = CustomEditor.isMarkActive(editor, mark);
+    Transforms.setNodes(editor, { [mark]: isActive ? null : true } as any, {
       match: (n) => T.isText(n),
       split: true,
     });
   },
 
-  toggleCodeBlock(editor) {
-    const isActive = CustomEditor.isBlockActive(editor, 'code');
-    Transforms.setNodes(editor, { type: isActive ? null : 'code' } as any, {
+  toggleBlock(editor, type) {
+    const isActive = CustomEditor.isBlockActive(editor, type);
+    Transforms.setNodes(editor, { type: isActive ? 'p' : type } as any, {
       match: (n) => Editor.isBlock(editor, n),
-    });
-  },
-
-  toggleItalicMark(editor) {
-    const isActive = CustomEditor.isItalicMarkActive(editor);
-    Transforms.setNodes(editor, { italic: isActive ? null : true } as any, {
-      match: (n) => T.isText(n),
-      split: true,
     });
   },
 
   toggleHeading(editor, headingType) {
     Transforms.setNodes(editor, { type: headingType } as any);
-  },
-
-  toggleQuote(editor) {
-    const isActive = CustomEditor.isBlockActive(editor, 'quote');
-    Transforms.setNodes(editor, { type: isActive ? null : 'quote' } as any, {
-      match: (n) => Editor.isBlock(editor, n),
-    });
   },
 
   toggleList(editor, listType) {

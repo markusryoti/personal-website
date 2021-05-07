@@ -1,5 +1,7 @@
 export const renderJsonToHtml = (props) => {
   switch (props.element.type) {
+    case 'p':
+      return <p>{props.children}</p>;
     case 'h1':
       return <h1>{props.children}</h1>;
     case 'h2':
@@ -22,6 +24,8 @@ export const renderJsonToHtml = (props) => {
       return <blockquote>{props.children}</blockquote>;
     case 'ordered-list':
       return <ol {...props.attributes}>{props.children}</ol>;
+    case 'bullet-list':
+      return <ul {...props.attributes}>{props.children}</ul>;
     case 'list-item':
       return <li {...props.attributes}>{props.children}</li>;
     default:

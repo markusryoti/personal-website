@@ -11,24 +11,33 @@ const Toolbar = () => {
       <button
         onMouseDown={(event) => {
           event.preventDefault();
-          CustomEditor.toggleBoldMark(editor);
+          CustomEditor.toggleMark(editor, 'bold');
         }}
+        className={
+          CustomEditor.isMarkActive(editor, 'bold') ? styles.isActive : ''
+        }
       >
         Bold
       </button>
       <button
         onMouseDown={(event) => {
           event.preventDefault();
-          CustomEditor.toggleItalicMark(editor);
+          CustomEditor.toggleMark(editor, 'italic');
         }}
+        className={
+          CustomEditor.isMarkActive(editor, 'italic') ? styles.isActive : ''
+        }
       >
-        Italics
+        Italic
       </button>
       <button
         onMouseDown={(event) => {
           event.preventDefault();
-          CustomEditor.toggleCodeBlock(editor);
+          CustomEditor.toggleBlock(editor, 'code');
         }}
+        className={
+          CustomEditor.isBlockActive(editor, 'code') ? styles.isActive : ''
+        }
       >
         Code
       </button>
@@ -37,6 +46,7 @@ const Toolbar = () => {
           event.preventDefault();
           CustomEditor.toggleHeading(editor, event.target.value);
         }}
+        className={styles.isActive}
       >
         <option value='p'>p</option>
         <option value='h1'>h1</option>
@@ -48,8 +58,11 @@ const Toolbar = () => {
       </select>
       <button
         onClick={(event) => {
-          CustomEditor.toggleQuote(editor);
+          CustomEditor.toggleBlock(editor, 'quote');
         }}
+        className={
+          CustomEditor.isBlockActive(editor, 'quote') ? styles.isActive : ''
+        }
       >
         Quote
       </button>
@@ -57,6 +70,11 @@ const Toolbar = () => {
         onClick={(e) => {
           CustomEditor.toggleList(editor, 'ordered-list');
         }}
+        className={
+          CustomEditor.isBlockActive(editor, 'ordered-list')
+            ? styles.isActive
+            : ''
+        }
       >
         ol
       </button>
@@ -64,6 +82,11 @@ const Toolbar = () => {
         onClick={(e) => {
           CustomEditor.toggleList(editor, 'bullet-list');
         }}
+        className={
+          CustomEditor.isBlockActive(editor, 'bullet-list')
+            ? styles.isActive
+            : ''
+        }
       >
         ul
       </button>

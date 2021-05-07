@@ -15,3 +15,8 @@
   border-left: 3px solid #ccc;
   font-style: italic;
 }
+
+.editorContainer .textContainer ul,
+.editorContainer .textContainer ol {
+  margin-left: 50px;
+}

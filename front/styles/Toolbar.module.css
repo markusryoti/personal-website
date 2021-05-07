@@ -11,5 +11,9 @@
   border-radius: 0;
   background-color: whitesmoke;
   border: none;
+  font-weight: 400;
+}
+
+.toolbarContainer .isActive {
   font-weight: 600;
 }
