@@ -17,7 +17,7 @@ const Toolbar = () => {
           CustomEditor.isMarkActive(editor, 'bold') ? styles.isActive : ''
         }
       >
-        Bold
+        <i className='fas fa-bold'></i>
       </button>
       <button
         onMouseDown={(event) => {
@@ -28,7 +28,7 @@ const Toolbar = () => {
           CustomEditor.isMarkActive(editor, 'italic') ? styles.isActive : ''
         }
       >
-        Italic
+        <i className='fas fa-italic'></i>
       </button>
       <button
         onMouseDown={(event) => {
@@ -39,14 +39,13 @@ const Toolbar = () => {
           CustomEditor.isBlockActive(editor, 'code') ? styles.isActive : ''
         }
       >
-        Code
+        <i className='fas fa-code'></i>
       </button>
       <select
         onChange={(event) => {
           event.preventDefault();
           CustomEditor.toggleHeading(editor, event.target.value);
         }}
-        className={styles.isActive}
       >
         <option value='p'>p</option>
         <option value='h1'>h1</option>
@@ -64,7 +63,7 @@ const Toolbar = () => {
           CustomEditor.isBlockActive(editor, 'quote') ? styles.isActive : ''
         }
       >
-        Quote
+        <i className='fas fa-quote-right'></i>
       </button>
       <button
         onClick={(e) => {
@@ -76,7 +75,7 @@ const Toolbar = () => {
             : ''
         }
       >
-        ol
+        <i className='fas fa-list-ol'></i>
       </button>
       <button
         onClick={(e) => {
@@ -88,7 +87,7 @@ const Toolbar = () => {
             : ''
         }
       >
-        ul
+        <i className='fas fa-list-ul'></i>
       </button>
       <button
         className={CustomEditor.isLinkActive(editor) ? styles.isActive : ''}
@@ -102,7 +101,7 @@ const Toolbar = () => {
           CustomEditor.insertLink(editor, url, name);
         }}
       >
-        Link Enable
+        <i className='fas fa-link'></i>
       </button>
       <button
         className={CustomEditor.isLinkActive(editor) ? styles.isActive : ''}
@@ -112,7 +111,7 @@ const Toolbar = () => {
           }
         }}
       >
-        Link Disable
+        <i className='fas fa-unlink'></i>
       </button>
     </div>
   );
