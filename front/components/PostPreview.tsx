@@ -8,12 +8,13 @@ const PostPreview = ({ post }) => {
     <div className={styles.previewContainer}>
       <div>
         <h1>{post.title}</h1>
+        <h3>{post.description}</h3>
         <div
           dangerouslySetInnerHTML={{ __html: post.body }}
           className={styles.bodyContainer}
         ></div>
         <Link href={`/blog/${post.id}`}>
-          <input type="button" value="Read More" className="btn btn-info" />
+          <input type='button' value='Read More' className='btn btn-info' />
         </Link>
       </div>
     </div>

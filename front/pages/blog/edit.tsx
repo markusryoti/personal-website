@@ -12,6 +12,7 @@ const edit = ({ user }) => {
   const router = useRouter();
   const { postToEdit, postContent } = useContext(EditorContext);
   const [postName, setPostName] = useState(postToEdit.title);
+  const [description, setDescription] = useState(postToEdit.description);
 
   const onPostSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ const edit = ({ user }) => {
       ...postToEdit,
       content: JSON.stringify(postContent),
       title: postName,
+      description,
     };
 
     try {
@@ -54,6 +56,14 @@ const edit = ({ user }) => {
             value={postName}
             onChange={(e) => setPostName(e.target.value)}
           />
+          <label htmlFor='description'>Description</label>
+          <input
+            type='text'
+            name='description'
+            id='description'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />{' '}
           <Editor initialValue={postToEdit.content} />
           <input
             type='button'

@@ -7,6 +7,7 @@ import schema from './posts.schema.json';
 class Posts extends Model {
   id?: number;
   title?: string;
+  description?: string;
   content?: string;
   user_id?: number;
 

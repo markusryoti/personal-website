@@ -13,3 +13,11 @@
   font-size: 1rem;
   font-weight: 400;
 }
+
+.description {
+  height: 2.5rem;
+  padding: 0.5rem;
+  width: 90%;
+  font-size: 1rem;
+  font-weight: 400;
+}

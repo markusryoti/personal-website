@@ -25,11 +25,12 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', authenticateToken, async (req: any, res, next) => {
   try {
-    const { content, title } = req.body;
+    const { content, title, description } = req.body;
     const userId = req.user.id;
     const newPost = await Posts.query().insert({
       content,
       title,
+      description,
       user_id: userId,
     });
     res.json(newPost);
@@ -40,14 +41,14 @@ router.post('/', authenticateToken, async (req: any, res, next) => {
 
 router.patch('/:id', authenticateToken, async (req: any, res, next) => {
   const { id } = req.params
-  const { title, content } = req.body;
+  const { title, content, description } = req.body;
   try {
     const post = await Posts.query().findById(id);
     if (post.user_id !== req.user.id) {
       res.status(401);
       throw new Error('No access to delete specific post');
     }
-    const success = await Posts.query().patch({ title, content }).findById(id);
+    const success = await Posts.query().patch({ title, content, description }).findById(id);
     if (!success) {
       throw new Error(`Updating post with id: ${id} failed`);
     }

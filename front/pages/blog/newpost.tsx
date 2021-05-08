@@ -12,6 +12,7 @@ import styles from '../../styles/NewPost.module.css';
 const newpost = ({ user }) => {
   const router = useRouter();
   const [postName, setPostName] = useState('');
+  const [description, setDescription] = useState('');
   const { postContent } = useContext(EditorContext);
 
   const onPostSubmit = async () => {
@@ -19,6 +20,7 @@ const newpost = ({ user }) => {
       const res = await axios.post(`${process.env.API_URL}/posts/`, {
         content: JSON.stringify(postContent),
         title: postName,
+        description,
       });
 
       if (res.status === 200) {
@@ -46,6 +48,14 @@ const newpost = ({ user }) => {
             id='postname'
             className={styles.postName}
             onChange={(e) => setPostName(e.target.value)}
+          />
+          <label htmlFor='description'>Description</label>
+          <input
+            type='text'
+            name='description'
+            id='description'
+            className={styles.description}
+            onChange={(e) => setDescription(e.target.value)}
           />
           <Editor initialValue={initialValue} />
           <input

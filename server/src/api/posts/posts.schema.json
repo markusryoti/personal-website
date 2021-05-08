@@ -25,6 +25,15 @@
 			],
 			"pattern": "^.*$"
 		},
+		"description": {
+			"$id": "#root/description",
+			"title": "Description", 
+			"type": "string",
+			"examples": [
+				"sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+			],
+			"pattern": "^.*$"
+		},
 		"content": {
 			"$id": "#root/body", 
 			"title": "Post content as json", 
