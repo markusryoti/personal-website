@@ -1,7 +1,6 @@
 .editorContainer {
   width: 100%;
   margin: 3rem auto;
-  /* padding: 1rem; */
   border: 1px solid var(--text-primary);
 }
 
