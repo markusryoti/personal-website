@@ -17,7 +17,9 @@ const Post = ({ user, post }) => {
       const res = await axios.delete(`${process.env.API_URL}/posts/${post.id}`);
       if (res.status === 200) {
         router.push('/blog');
+        return;
       }
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +83,11 @@ const Post = ({ user, post }) => {
       <div className='container'>
         <div className={styles.postContent}>
           <h1>{post.title}</h1>
-          <div>{post.content.map((post) => serialize(post))}</div>
+          <div>
+            {post.content.map((post, index) => {
+              return <div key={index}>{serialize(post)}</div>;
+            })}
+          </div>
         </div>
       </div>
       {user.id === post.user_id && (

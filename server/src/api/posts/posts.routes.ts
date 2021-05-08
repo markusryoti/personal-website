@@ -39,7 +39,8 @@ router.post('/', authenticateToken, async (req: any, res, next) => {
 });
 
 router.patch('/:id', authenticateToken, async (req: any, res, next) => {
-  const { id, title, content } = req.body;
+  const { id } = req.params
+  const { title, content } = req.body;
   try {
     const post = await Posts.query().findById(id);
     if (post.user_id !== req.user.id) {

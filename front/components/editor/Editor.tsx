@@ -11,7 +11,6 @@ import { createEditor } from 'slate';
 
 // Import the Slate components and React plugin.
 import { Slate, Editable, withReact } from 'slate-react';
-import { initialValue } from './InitialValue';
 
 import Toolbar from './Toolbar';
 
@@ -19,7 +18,7 @@ import styles from '../../styles/Editor.module.css';
 import { EditorContext } from '../../context/EditorState';
 import { Leaf, renderJsonToHtml } from '../JsonToHtml';
 
-const Editor = () => {
+const Editor = ({ initialValue }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
   // Add the initial value when setting up our state.
   const [value, setValue] = useState(initialValue);

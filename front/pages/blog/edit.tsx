@@ -2,24 +2,30 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import Editor from '../../components/editor/Editor';
-import { initialValue } from '../../components/editor/InitialValue';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import { EditorContext } from '../../context/EditorState';
 
-import styles from '../../styles/NewPost.module.css';
+import styles from '../../styles/EditPost.module.css';
 
-const newpost = ({ user }) => {
+const edit = ({ user }) => {
   const router = useRouter();
-  const [postName, setPostName] = useState('');
-  const { postContent } = useContext(EditorContext);
+  const { postToEdit, postContent } = useContext(EditorContext);
+  const [postName, setPostName] = useState(postToEdit.title);
 
-  const onPostSubmit = async () => {
+  const onPostSubmit = async (e) => {
+    e.preventDefault();
+    const editedPost = {
+      ...postToEdit,
+      content: JSON.stringify(postContent),
+      title: postName,
+    };
+
     try {
-      const res = await axios.post(`${process.env.API_URL}/posts/`, {
-        content: JSON.stringify(postContent),
-        title: postName,
-      });
+      const res = await axios.patch(
+        `${process.env.API_URL}/posts/${postToEdit.id}`,
+        editedPost
+      );
 
       if (res.status === 200) {
         router.push('/blog');
@@ -45,9 +51,10 @@ const newpost = ({ user }) => {
             name='postname'
             id='postname'
             className={styles.postName}
+            value={postName}
             onChange={(e) => setPostName(e.target.value)}
           />
-          <Editor initialValue={initialValue} />
+          <Editor initialValue={postToEdit.content} />
           <input
             type='button'
             className='btn btn-success'
@@ -61,4 +68,4 @@ const newpost = ({ user }) => {
   );
 };
 
-export default newpost;
+export default edit;
