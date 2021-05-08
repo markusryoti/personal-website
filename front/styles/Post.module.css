@@ -6,12 +6,44 @@
   width: 100%;
 }
 
-.postContent h1 {
+.postContent {
   margin: 2rem 0;
 }
 
-.postContent p {
-  margin: 0;
+.postContent .postHeader {
+  margin-bottom: 6rem;
+}
+
+.postContent .postHeader h1 {
+  margin: 1rem 0;
+}
+.postContent .postHeader h5 {
+  margin: 0 0;
+  font-weight: 400;
+}
+
+.postContent .postBody > * {
+  margin: 1rem 0;
+}
+
+.postContent .postBody blockquote {
+  margin: 3rem 0 3rem 50px;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+  font-style: italic;
+}
+
+.postContent .postBody pre {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.postContent .postBody a {
+  text-decoration: underline;
+}
+
+.postContent .postBody p {
+  margin: 1rem 0 2.5rem 0;
 }
 
 .actionButtonContainer {

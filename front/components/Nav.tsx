@@ -73,22 +73,22 @@ const Nav = ({ user }) => {
         <div className={styles.navLinks}>
           <ul>
             <li className={!currentPath ? styles.active : ''}>
-              <Link href="/">
+              <Link href='/'>
                 <a>Home</a>
               </Link>
             </li>
             <li className={currentPath === 'about' ? styles.active : ''}>
-              <Link href="/about">
+              <Link href='/about'>
                 <a>About</a>
               </Link>
             </li>
             <li className={currentPath === 'blog' ? styles.active : ''}>
-              <Link href="/blog">
+              <Link href='/blog'>
                 <a>Blog</a>
               </Link>
             </li>
             <li className={currentPath === 'contact' ? styles.active : ''}>
-              <Link href="/contact">
+              <Link href='/contact'>
                 <a>Contact</a>
               </Link>
             </li>
@@ -99,12 +99,14 @@ const Nav = ({ user }) => {
                     setPostToEdit(null);
                   }}
                 >
-                  <Link href="/blog/newpost">
-                    <a>New Post</a>
+                  <Link href='/blog/newpost'>
+                    <a>
+                      New Post <i className='fas fa-plus-circle'></i>
+                    </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link href='#'>
                     <a>{user.username}</a>
                   </Link>
                 </li>
@@ -121,8 +123,10 @@ const Nav = ({ user }) => {
               setPostToEdit(null);
             }}
           >
-            <Link href="/blog/newpost">
-              <a>New Post</a>
+            <Link href='/blog/newpost'>
+              <a>
+                New Post <i className='fas fa-plus-circle'></i>
+              </a>
             </Link>
           </div>
           <div>{user.username}</div>

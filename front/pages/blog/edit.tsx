@@ -61,9 +61,10 @@ const edit = ({ user }) => {
             type='text'
             name='description'
             id='description'
+            className={styles.description}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />{' '}
+          />
           <Editor initialValue={postToEdit.content} />
           <input
             type='button'

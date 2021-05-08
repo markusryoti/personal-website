@@ -33,15 +33,22 @@ const Post = ({ user, post }) => {
     <div className={`center-children ${styles.center}`}>
       <div className='container'>
         <div className={styles.postContent}>
-          <h1>{post.title}</h1>
-          <h4>{post.description}</h4>
-          {post.image_url && (
-            <img
-              src='https://images.unsplash.com/photo-1526069824293-406685e85766?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-              alt='image'
-            />
-          )}
+          <div className={styles.postHeader}>
+            <h1>{post.title}</h1>
+            <h4>{post.description}</h4>
+            <h5>
+              Published:{' '}
+              <em>{new Date(post.created_at).toLocaleDateString()}</em>
+            </h5>
+            {post.image_url && (
+              <img
+                src='https://images.unsplash.com/photo-1526069824293-406685e85766?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+                alt='image'
+              />
+            )}
+          </div>
           <div
+            className={styles.postBody}
             dangerouslySetInnerHTML={{
               __html: post.content.map((post) => serialize(post)).join(''),
             }}
