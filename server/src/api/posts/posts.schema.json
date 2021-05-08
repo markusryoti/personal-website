@@ -34,6 +34,15 @@
 			],
 			"pattern": "^.*$"
 		},
+		"image_url": {
+			"$id": "#root/image_url",
+			"title": "Main image url", 
+			"type": "string",
+			"examples": [
+				"sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+			],
+			"pattern": "^.*$"
+		},
 		"content": {
 			"$id": "#root/body", 
 			"title": "Post content as json", 

@@ -1,5 +1,11 @@
 // Import the Slate editor factory.
-import { Editor, Transforms, Text as T } from 'slate';
+import {
+  Editor,
+  Transforms,
+  Text as T,
+  Element as SlateElement,
+  Descendant,
+} from 'slate';
 
 // TypeScript Users only add this code
 import { BaseEditor } from 'slate';
@@ -22,6 +28,8 @@ export type ListElement = {
   type: string;
   children: any[];
 };
+
+export type LinkElement = { type: 'link'; url: string; children: any[] };
 
 export type CustomElement = ListElement | ParagraphElement | HeadingElement;
 export type FormattedText = { text: string; bold: boolean; italic: boolean };
@@ -90,6 +98,50 @@ const CustomEditor = {
     if (!isActive && isList) {
       const block = { type: listType, children: [] };
       Transforms.wrapNodes(editor, block);
+    }
+  },
+
+  insertLink(editor, url, name) {
+    if (editor.selection) {
+      CustomEditor.wrapLink(editor, url, name);
+    }
+  },
+
+  isLinkActive(editor) {
+    const [link] = Editor.nodes(editor, {
+      match: (n) =>
+        !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
+    });
+    return !!link;
+  },
+
+  unwrapLink(editor) {
+    Transforms.unwrapNodes(editor, {
+      match: (n) =>
+        !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
+    });
+  },
+
+  wrapLink(editor, url, name) {
+    if (CustomEditor.isLinkActive(editor)) {
+      CustomEditor.unwrapLink(editor);
+    }
+
+    const { selection } = editor;
+    // const isCollapsed = selection && Range.isCollapsed(selection)
+    const isCollapsed = selection;
+
+    const link: LinkElement = {
+      type: 'link',
+      url,
+      children: isCollapsed ? [{ text: name ? name : url }] : [],
+    };
+
+    if (isCollapsed) {
+      Transforms.insertNodes(editor, link);
+    } else {
+      Transforms.wrapNodes(editor, link, { split: true });
+      Transforms.collapse(editor, { edge: 'end' });
     }
   },
 };

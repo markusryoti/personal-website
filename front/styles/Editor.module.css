@@ -20,3 +20,8 @@
 .editorContainer .textContainer ol {
   margin-left: 50px;
 }
+
+.editorContainer .textContainer a {
+  text-decoration: underline;
+  cursor: pointer;
+}

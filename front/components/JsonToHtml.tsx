@@ -28,6 +28,12 @@ export const renderJsonToHtml = (props) => {
       return <ul {...props.attributes}>{props.children}</ul>;
     case 'list-item':
       return <li {...props.attributes}>{props.children}</li>;
+    case 'link':
+      return (
+        <a {...props.attributes} href={props.element.url}>
+          {props.children}
+        </a>
+      );
     default:
       return <DefaultElement {...props} />;
   }

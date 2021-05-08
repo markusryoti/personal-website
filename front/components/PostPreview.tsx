@@ -8,7 +8,7 @@ const PostPreview = ({ post }) => {
     <div className={styles.previewContainer}>
       <div>
         <h1>{post.title}</h1>
-        <h3>{post.description}</h3>
+        <p>{post.description}</p>
         <div
           dangerouslySetInnerHTML={{ __html: post.body }}
           className={styles.bodyContainer}

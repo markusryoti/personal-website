@@ -90,6 +90,30 @@ const Toolbar = () => {
       >
         ul
       </button>
+      <button
+        className={CustomEditor.isLinkActive(editor) ? styles.isActive : ''}
+        onMouseDown={(event) => {
+          event.preventDefault();
+          const url = window.prompt('Enter the URL of the link:');
+          if (!url) return;
+          const name = window.prompt(
+            'Enter optional name for link or leave blank for url:'
+          );
+          CustomEditor.insertLink(editor, url, name);
+        }}
+      >
+        Link Enable
+      </button>
+      <button
+        className={CustomEditor.isLinkActive(editor) ? styles.isActive : ''}
+        onMouseDown={(event) => {
+          if (CustomEditor.isLinkActive(editor)) {
+            CustomEditor.unwrapLink(editor);
+          }
+        }}
+      >
+        Link Disable
+      </button>
     </div>
   );
 };

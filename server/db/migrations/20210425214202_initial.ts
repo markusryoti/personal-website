@@ -18,6 +18,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments().notNullable();
     table.string('title', 254).notNullable().unique();
     table.string('description', 254);
+    table.string('image_url', 512);
     table.json('content').notNullable();
     table
       .integer('user_id')

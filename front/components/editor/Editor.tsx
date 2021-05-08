@@ -17,9 +17,10 @@ import Toolbar from './Toolbar';
 import styles from '../../styles/Editor.module.css';
 import { EditorContext } from '../../context/EditorState';
 import { Leaf, renderJsonToHtml } from '../JsonToHtml';
+import withLinks from './withLinks';
 
 const Editor = ({ initialValue }) => {
-  const editor = useMemo(() => withReact(createEditor()), []);
+  const editor = useMemo(() => withLinks(withReact(createEditor())), []);
   // Add the initial value when setting up our state.
   const [value, setValue] = useState(initialValue);
   const { setPostContent } = useContext(EditorContext);

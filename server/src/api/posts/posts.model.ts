@@ -8,6 +8,7 @@ class Posts extends Model {
   id?: number;
   title?: string;
   description?: string;
+  image_url?: string;
   content?: string;
   user_id?: number;
 

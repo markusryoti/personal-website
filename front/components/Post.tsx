@@ -34,12 +34,18 @@ const Post = ({ user, post }) => {
       <div className='container'>
         <div className={styles.postContent}>
           <h1>{post.title}</h1>
-          <h3>{post.description}</h3>
-          <div>
-            {post.content.map((post, index) => {
-              return <div key={index}>{serialize(post)}</div>;
-            })}
-          </div>
+          <h4>{post.description}</h4>
+          {post.image_url && (
+            <img
+              src='https://images.unsplash.com/photo-1526069824293-406685e85766?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+              alt='image'
+            />
+          )}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: post.content.map((post) => serialize(post)).join(''),
+            }}
+          ></div>
         </div>
       </div>
       {user.id === post.user_id && (

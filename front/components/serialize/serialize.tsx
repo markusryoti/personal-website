@@ -13,37 +13,40 @@ function serialize(node) {
     return string;
   }
 
-  const children = node.children.map((n) => serialize(n)).join('');
+  const children = node.children
+    .filter((p) => p.children || p.text)
+    .map((n) => serialize(n))
+    .join('');
 
   switch (node.type) {
-    case 'p':
-      return <p dangerouslySetInnerHTML={{ __html: children }}></p>;
     case 'h1':
-      return <h1>{children}</h1>;
+      return `<h1>${children}</h1>`;
     case 'h2':
-      return <h2>{children}</h2>;
+      return `<h2>${children}</h2>`;
     case 'h3':
-      return <h3>{children}</h3>;
+      return `<h3>${children}</h3>`;
     case 'h4':
-      return <h4>{children}</h4>;
+      return `<h4>${children}</h4>`;
     case 'h5':
-      return <h5>{children}</h5>;
+      return `<h5>${children}</h5>`;
     case 'h6':
-      return <h6>{children}</h6>;
+      return `<h6>${children}</h6>`;
+    case 'link':
+      return `<a href=${node.url}>${children}</a>`;
     case 'code':
-      return <CodeElement {...children} />;
+      return ` <pre>
+                <code>${children}</code>
+               </pre>`;
     case 'quote':
-      return (
-        <blockquote dangerouslySetInnerHTML={{ __html: children }}></blockquote>
-      );
+      return `<blockquote >${children}</blockquote>`;
     case 'ordered-list':
-      return <ol dangerouslySetInnerHTML={{ __html: children }}></ol>;
+      return `<ol>${children}</ol>`;
     case 'bullet-list':
-      return <ul dangerouslySetInnerHTML={{ __html: children }}></ul>;
+      return `<ul>${children}</ul>`;
     case 'list-item':
       return `<li>${children}</li>`;
     default:
-      return children;
+      return `<p>${children}</p>`;
   }
 }
 
