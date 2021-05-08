@@ -16,11 +16,15 @@ import Toolbar from './Toolbar';
 
 import styles from '../../styles/Editor.module.css';
 import { EditorContext } from '../../context/EditorState';
-import { Leaf, renderJsonToHtml } from '../JsonToHtml';
+import { Leaf, renderJsonToHtml } from './jsonToHtml';
 import withLinks from './withLinks';
+import withImages from './withImages';
 
 const Editor = ({ initialValue }) => {
-  const editor = useMemo(() => withLinks(withReact(createEditor())), []);
+  const editor = useMemo(
+    () => withImages(withLinks(withReact(createEditor()))),
+    []
+  );
   // Add the initial value when setting up our state.
   const [value, setValue] = useState(initialValue);
   const { setPostContent } = useContext(EditorContext);

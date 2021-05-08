@@ -55,7 +55,7 @@ const Post = ({ user, post }) => {
           ></div>
         </div>
       </div>
-      {user.id === post.user_id && (
+      {user && user.id === post.user_id && (
         <div className={styles.actionButtonContainer}>
           <input
             type='button'

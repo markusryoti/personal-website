@@ -10,12 +10,12 @@ const blog = ({ posts, user }) => {
   return (
     <>
       <Nav user={user} />
-      <div className="center-children">
+      <div className='center-children'>
         <div className={styles.postsContainer}>
           {posts.length > 0 ? (
-            posts.map(post => <PostPreview key={post.id} post={post} />)
+            posts.map((post) => <PostPreview key={post.id} post={post} />)
           ) : (
-            <h1>No Posts Yet!</h1>
+            <h1 style={{ margin: '5rem 5rem' }}>No Posts Yet!</h1>
           )}
         </div>
       </div>

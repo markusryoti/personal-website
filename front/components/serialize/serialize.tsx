@@ -1,5 +1,5 @@
 import { Text } from 'slate';
-import { CodeElement } from '../JsonToHtml';
+import { CodeElement } from '../editor/jsonToHtml';
 
 function serialize(node) {
   if (Text.isText(node)) {
@@ -32,13 +32,15 @@ function serialize(node) {
     case 'h6':
       return `<h6>${children}</h6>`;
     case 'link':
-      return `<a href=${node.url}>${children}</a>`;
+      return `<a href=${node.url} target="_blank">${children}</a>`;
     case 'code':
       return ` <pre>
                 <code>${children}</code>
                </pre>`;
     case 'quote':
       return `<blockquote >${children}</blockquote>`;
+    case 'image':
+      return `<img src=${node.url} alt=''/>`;
     case 'ordered-list':
       return `<ol>${children}</ol>`;
     case 'bullet-list':

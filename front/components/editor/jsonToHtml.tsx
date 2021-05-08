@@ -34,8 +34,19 @@ export const renderJsonToHtml = (props) => {
           {props.children}
         </a>
       );
+    case 'image':
+      return (
+        <div {...props.attributes}>
+          <div contentEditable={false}>
+            <img src={props.element.url} />
+          </div>
+          {props.children}
+        </div>
+      );
     default:
-      return <DefaultElement {...props} />;
+      return <div>{props.children}</div>;
+    // default:
+    //   return <DefaultElement {...props} />;
   }
 };
 

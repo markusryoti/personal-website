@@ -69,7 +69,7 @@ const edit = ({ user }) => {
           <input
             type='button'
             className='btn btn-success'
-            value='Submit'
+            value='Update'
             onClick={onPostSubmit}
           />
         </div>

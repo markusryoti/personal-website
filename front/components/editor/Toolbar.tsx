@@ -3,6 +3,7 @@ import { useSlate } from 'slate-react';
 import CustomEditor from './CustomEditor';
 
 import styles from '../../styles/Toolbar.module.css';
+import { isImageUrl } from './withImages';
 
 const Toolbar = () => {
   const editor = useSlate();
@@ -112,6 +113,19 @@ const Toolbar = () => {
         }}
       >
         <i className='fas fa-unlink'></i>
+      </button>
+      <button
+        onMouseDown={(event) => {
+          event.preventDefault();
+          const url = window.prompt('Enter the URL of the image:');
+          // if (url && !isImageUrl(url)) {
+          //   alert('URL is not an image');
+          //   return;
+          // }
+          CustomEditor.insertImage(editor, url);
+        }}
+      >
+        <i className='far fa-image'></i>
       </button>
     </div>
   );

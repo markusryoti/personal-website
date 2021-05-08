@@ -14,7 +14,11 @@ const post = ({ user, post }) => {
         <title>{post.title}</title>
       </Head>
       <Nav user={user} />
-      <Post post={post} user={user} />
+      {post ? (
+        <Post post={post} user={user} />
+      ) : (
+        <h1 style={{ margin: '5rem 5rem' }}>No such post</h1>
+      )}
       <Footer />
     </>
   );

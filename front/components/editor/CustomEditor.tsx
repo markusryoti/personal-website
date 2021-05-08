@@ -29,7 +29,16 @@ export type ListElement = {
   children: any[];
 };
 
+export type EmptyText = {
+  text: string;
+};
+
 export type LinkElement = { type: 'link'; url: string; children: any[] };
+export type ImageElement = {
+  type: 'image';
+  url: string;
+  children: EmptyText[];
+};
 
 export type CustomElement = ListElement | ParagraphElement | HeadingElement;
 export type FormattedText = { text: string; bold: boolean; italic: boolean };
@@ -143,6 +152,12 @@ const CustomEditor = {
       Transforms.wrapNodes(editor, link, { split: true });
       Transforms.collapse(editor, { edge: 'end' });
     }
+  },
+
+  insertImage(editor, url) {
+    const text = { text: '' };
+    const image: ImageElement = { type: 'image', url: url, children: [text] };
+    Transforms.insertNodes(editor, image);
   },
 };
 
