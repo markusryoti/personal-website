@@ -3,10 +3,9 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { EditorContext } from '../context/EditorState';
 
-import { Node } from 'slate';
 import { Text } from 'slate';
 import styles from '../styles/Post.module.css';
-import { CodeElement, renderJsonToHtml } from './JsonToHtml';
+import { CodeElement } from './JsonToHtml';
 
 const Post = ({ user, post }) => {
   const router = useRouter();
@@ -60,16 +59,18 @@ const Post = ({ user, post }) => {
         return <h6>{children}</h6>;
       case 'code':
         return <CodeElement {...children} />;
-      case 'bold':
-        return <strong>{children}</strong>;
-      case 'italic':
-        return <em>{children}</em>;
       case 'quote':
         return (
           <blockquote
             dangerouslySetInnerHTML={{ __html: children }}
           ></blockquote>
         );
+      case 'ordered-list':
+        return <ol dangerouslySetInnerHTML={{ __html: children }}></ol>;
+      case 'bullet-list':
+        return <ul dangerouslySetInnerHTML={{ __html: children }}></ul>;
+      case 'list-item':
+        return `<li>${children}</li>`;
       default:
         return children;
     }
