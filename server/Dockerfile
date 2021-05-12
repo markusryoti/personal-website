@@ -4,7 +4,10 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm i
+RUN apt install make gcc g++ python && \
+    npm install && \
+    npm rebuild bcrypt --build-from-source && \
+    apt autoremove
 
 # For migrate/seeds
 RUN npm i -g knex

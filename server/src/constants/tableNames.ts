@@ -3,7 +3,8 @@ const names = {
   posts: 'posts',
   comments: 'comments',
   threads: 'threads',
-  imageUrls: 'image_urls',
+  images: 'images',
+  post_images: 'post_images'
 };
 
 export default names;
