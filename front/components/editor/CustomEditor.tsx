@@ -1,56 +1,7 @@
 // Import the Slate editor factory.
-import {
-  Editor,
-  Transforms,
-  Text as T,
-  Element as SlateElement,
-  Descendant,
-} from 'slate';
+import { Editor, Transforms, Text as T, Element as SlateElement } from 'slate';
 
-// TypeScript Users only add this code
-import { BaseEditor } from 'slate';
-import { ReactEditor } from 'slate-react';
-
-export type CustomEditor = BaseEditor & ReactEditor;
-
-export type ParagraphElement = {
-  type: 'paragraph';
-  children: CustomText[];
-};
-
-export type HeadingElement = {
-  type: 'heading';
-  level: number;
-  children: CustomText[];
-};
-
-export type ListElement = {
-  type: string;
-  children: any[];
-};
-
-export type EmptyText = {
-  text: string;
-};
-
-export type LinkElement = { type: 'link'; url: string; children: any[] };
-export type ImageElement = {
-  type: 'image';
-  url: string;
-  children: EmptyText[];
-};
-
-export type CustomElement = ListElement | ParagraphElement | HeadingElement;
-export type FormattedText = { text: string; bold: boolean; italic: boolean };
-export type CustomText = FormattedText;
-
-declare module 'slate' {
-  interface CustomTypes {
-    Editor: CustomEditor;
-    Element: CustomElement;
-    Text: CustomText;
-  }
-}
+import { ImageElement, LinkElement } from './types';
 
 const LIST_TYPES = ['ordered-list', 'bullet-list'];
 
@@ -131,7 +82,7 @@ const CustomEditor = {
     });
   },
 
-  wrapLink(editor, url, name) {
+  wrapLink(editor, url, name = '') {
     if (CustomEditor.isLinkActive(editor)) {
       CustomEditor.unwrapLink(editor);
     }

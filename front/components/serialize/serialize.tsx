@@ -1,5 +1,4 @@
 import { Text } from 'slate';
-import { CodeElement } from '../editor/jsonToHtml';
 
 function serialize(node) {
   if (Text.isText(node)) {

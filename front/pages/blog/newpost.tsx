@@ -13,7 +13,8 @@ const newpost = ({ user }) => {
   const router = useRouter();
   const [postName, setPostName] = useState('');
   const [description, setDescription] = useState('');
-  const { postContent } = useContext(EditorContext);
+  const [postImage, setPostImage] = useState('');
+  const { postContent, postImages } = useContext(EditorContext);
 
   const onPostSubmit = async () => {
     try {
@@ -21,6 +22,7 @@ const newpost = ({ user }) => {
         content: JSON.stringify(postContent),
         title: postName,
         description,
+        postImage,
       });
 
       if (res.status === 200) {
@@ -48,6 +50,14 @@ const newpost = ({ user }) => {
             id='postname'
             className={styles.postName}
             onChange={(e) => setPostName(e.target.value)}
+          />
+          <label htmlFor='postimage'>Main Post Image</label>
+          <input
+            type='text'
+            id='postimage'
+            name='postimage'
+            className={styles.postImage}
+            onChange={(e) => setPostImage(e.target.value)}
           />
           <label htmlFor='description'>Description</label>
           <input

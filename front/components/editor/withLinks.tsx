@@ -10,20 +10,12 @@ function withLinks(editor) {
   };
 
   editor.insertText = (text) => {
-    if (text && isUrl(text)) {
+    if (text && text.startsWith('http')) {
+      console.log('link');
+
       CustomEditor.wrapLink(editor, text);
     } else {
       insertText(text);
-    }
-  };
-
-  editor.insertData = (data) => {
-    const text = data.getData('text/plain');
-
-    if (text && isUrl(text)) {
-      CustomEditor.wrapLink(editor, text);
-    } else {
-      insertData(data);
     }
   };
 
