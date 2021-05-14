@@ -54,19 +54,37 @@ router.post('/', authenticateToken, async (req: any, res, next) => {
 
 router.patch('/:id', authenticateToken, async (req: any, res, next) => {
   const { id } = req.params;
-  const { title, content, description, image_url } = req.body;
+  const { title, content, description, image_url, s3Links } = req.body;
+
   try {
     const post = await Posts.query().findById(id);
     if (post.user_id !== req.user.id) {
       res.status(401);
       throw new Error('No access to delete specific post');
     }
+
     const success = await Posts.query()
       .patch({ title, content, description, image_url })
       .findById(id);
+
     if (!success) {
       throw new Error(`Updating post with id: ${id} failed`);
     }
+
+    for (const link of s3Links) {
+      const imageJoin = (await Images.query()
+        .select('images.id', 'images.url', 'post_images.id as post_image_id')
+        .leftJoin('post_images', 'images.id', 'post_images.image_id')
+        .where('images.url', link)) as any;
+
+      if (!imageJoin.post_image_id) {
+        await PostImages.query().insert({
+          image_id: imageJoin[0].id,
+          post_id: id,
+        });
+      }
+    }
+
     res.json({ message: 'Post updated' });
   } catch (error) {
     next(error);

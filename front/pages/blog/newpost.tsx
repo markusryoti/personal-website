@@ -15,7 +15,7 @@ const newpost = ({ user }) => {
   const [postName, setPostName] = useState('');
   const [description, setDescription] = useState('');
   const [postImage, setPostImage] = useState('');
-  const { postContent, postImages } = useContext(EditorContext);
+  const { postContent } = useContext(EditorContext);
 
   const onPostSubmit = async () => {
     try {
@@ -28,7 +28,7 @@ const newpost = ({ user }) => {
         content: JSON.stringify(postContent),
         title: postName,
         description,
-        postImage,
+        image_url: postImage,
         s3Links,
       });
 
