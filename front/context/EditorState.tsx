@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react';
 
 export interface IProvider {
-  postContent: string;
+  postContent: any;
   postToEdit: any;
   postImages: string[];
   setPostContent: (content: object) => void;

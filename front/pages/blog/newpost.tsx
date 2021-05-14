@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import Editor from '../../components/editor/Editor';
 import { initialValue } from '../../components/editor/InitialValue';
+import { parseS3Links } from '../../components/editor/parseS3Links';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import { EditorContext } from '../../context/EditorState';
@@ -18,11 +19,17 @@ const newpost = ({ user }) => {
 
   const onPostSubmit = async () => {
     try {
+      const s3Links = postContent
+        .map((p) => parseS3Links(p))
+        .filter((arr) => arr.length > 0)
+        .filter((item) => item.includes(process.env.S3_BUCKET_NAME));
+
       const res = await axios.post(`${process.env.API_URL}/posts/`, {
         content: JSON.stringify(postContent),
         title: postName,
         description,
         postImage,
+        s3Links,
       });
 
       if (res.status === 200) {

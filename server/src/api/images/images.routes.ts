@@ -1,10 +1,15 @@
 import express from 'express';
 import multer from 'multer';
+import fs from 'fs';
+
+import util from 'util';
+const unlinkFile = util.promisify(fs.unlink);
+
 const upload = multer({ dest: 'uploads/' });
 
 import { authenticateToken } from '../../middlewares';
-
 import { uploadFile } from '../../lib/s3';
+import Images from './images.model';
 
 const router = express.Router();
 
@@ -15,17 +20,14 @@ router.post(
   async (req: any, res: any, next: any) => {
     try {
       const file = req.file;
-      console.log(file);
-
-      // TODO
-      // Upload to s3
       const s3UploadResult = await uploadFile(file);
-      // console.log(s3UploadResult);
       const { Location } = s3UploadResult;
+      await unlinkFile(file.path);
 
-      // TODO
-      // Add to photos, return photos.id
-      // Return to the client, update post_images when post is published
+      await Images.query().insert({
+        url: Location,
+        user_id: req.user.id,
+      });
 
       res.json({ url: Location });
     } catch (error) {

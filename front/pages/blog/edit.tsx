@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Editor from '../../components/editor/Editor';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';

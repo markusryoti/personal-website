@@ -1,5 +1,7 @@
 import express from 'express';
 import { authenticateToken } from '../../middlewares';
+import Images from '../images/images.model';
+import PostImages from '../post_images/post_images.model';
 import Posts from './posts.model';
 
 const router = express.Router();
@@ -25,14 +27,25 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', authenticateToken, async (req: any, res, next) => {
   try {
-    const { content, title, description, image_url } = req.body;
+    const { content, title, description, image_url, s3Links } = req.body;
     const userId = req.user.id;
+
     const newPost = await Posts.query().insert({
       content,
       title,
       description,
       user_id: userId,
     });
+
+    for (const link of s3Links) {
+      const imgIds = await Images.query().select('*').where('url', link);
+
+      await PostImages.query().insert({
+        image_id: imgIds[0].id,
+        post_id: newPost.id,
+      });
+    }
+
     res.json(newPost);
   } catch (error) {
     next(error);

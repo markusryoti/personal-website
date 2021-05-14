@@ -1,4 +1,4 @@
-import knex, { Knex } from 'knex';
+import Knex from 'knex';
 
 import tableNames from '../../src/constants/tableNames';
 
@@ -38,7 +38,7 @@ export async function up(knex: Knex): Promise<void> {
       .unsigned()
       .references('id')
       .inTable(tableNames.users)
-      .onDelete('set null')
+      .onDelete('cascade')
       .notNullable();
     table.timestamps(false, true);
   });
@@ -50,6 +50,13 @@ export async function up(knex: Knex): Promise<void> {
       .unsigned()
       .references('id')
       .inTable(tableNames.images)
+      .onDelete('cascade')
+      .notNullable();
+    table
+      .integer('post_id')
+      .unsigned()
+      .references('id')
+      .inTable(tableNames.posts)
       .onDelete('cascade')
       .notNullable();
     table.timestamps(false, true);

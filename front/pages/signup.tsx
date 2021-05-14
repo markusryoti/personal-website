@@ -18,7 +18,6 @@ const signup = ({ user, setUser }) => {
   const handleChange = (e: any) => {
     const { value, name } = e.currentTarget;
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
   const handleSignup = async (e) => {
     e.preventDefault();
