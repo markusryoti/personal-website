@@ -111,6 +111,22 @@
   padding: 0.5rem;
 }
 
+.loggedInLinks div.signoutButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.loggedInLinks div.signoutButton a {
+  height: 100%;
+  width: 100%;
+  background: #e6e62d;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
 @media only screen and (max-width: 600px) {
   .nav {
     padding: 1rem 0;

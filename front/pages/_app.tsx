@@ -5,19 +5,12 @@ import axios from 'axios';
 
 import '../styles/globals.css';
 import EditorState from '../context/EditorState';
+import setAuthToken from '../lib/setAuthToken';
 
 export interface IUser {
   id: number;
   username: string;
   email: string;
-}
-
-function setAuthToken(token: string) {
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = token;
-  } else {
-    delete axios.defaults.headers.common['Authorization'];
-  }
 }
 
 function MyApp({ Component, pageProps }) {
@@ -32,7 +25,7 @@ function MyApp({ Component, pageProps }) {
             Authorization: token,
           },
         })
-        .then(res => {
+        .then((res) => {
           if (res.status === 200) {
             const user = res.data;
             setUser(user);
@@ -42,15 +35,16 @@ function MyApp({ Component, pageProps }) {
           // Invalid token
           setAuthToken('');
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
+    setUser(null);
   }, []);
 
   return (
     <>
       <Head>
         <title>markusryoti.io</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <EditorState>
         <Component {...pageProps} user={user} setUser={setUser} />

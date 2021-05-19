@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import styles from '../styles/Nav.module.css';
 import { EditorContext } from '../context/EditorState';
 import useWindowDimensions from '../hooks/useWindowDimensions';
+import setAuthToken from '../lib/setAuthToken';
 
 const Nav = ({ user }) => {
   const router = useRouter();
@@ -27,6 +28,13 @@ const Nav = ({ user }) => {
       setLinksVisible(false);
     }
   }, [width]);
+
+  const handleSignOut = () => {
+    setAuthToken('');
+    localStorage.removeItem('token');
+    // TODO
+    // Set user object to null
+  };
 
   return (
     <nav className={styles.nav}>
@@ -79,6 +87,13 @@ const Nav = ({ user }) => {
                     <a>{user.username}</a>
                   </Link>
                 </li>
+                <li onClick={handleSignOut}>
+                  <Link href='#'>
+                    <a>
+                      Signout <i className='fas fa-sign-out-alt' />
+                    </a>
+                  </Link>
+                </li>
               </>
             )}
           </ul>
@@ -99,6 +114,13 @@ const Nav = ({ user }) => {
             </Link>
           </div>
           <div>{user.username}</div>
+          <div className={styles.signoutButton} onClick={handleSignOut}>
+            <Link href='#'>
+              <a>
+                <i className='fas fa-sign-out-alt' />
+              </a>
+            </Link>
+          </div>
         </div>
       )}
     </nav>
