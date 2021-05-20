@@ -7,6 +7,7 @@ import { parseS3Links } from '../../components/editor/parseS3Links';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import { EditorContext } from '../../context/EditorState';
+import uploadImage from '../../lib/uploadImage';
 
 import styles from '../../styles/NewPost.module.css';
 
@@ -29,7 +30,9 @@ const newpost = ({ user }) => {
         title: postName,
         description,
         image_url: postImage,
-        s3Links,
+        s3Links: postImage.includes(process.env.S3_BUCKET_NAME)
+          ? [...s3Links, postImage]
+          : s3Links,
       });
 
       if (res.status === 200) {
@@ -40,6 +43,14 @@ const newpost = ({ user }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handlePostImageAdd = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    const response = await uploadImage(formData);
+    setPostImage(response.url);
   };
 
   return (
@@ -64,8 +75,10 @@ const newpost = ({ user }) => {
             id='postimage'
             name='postimage'
             className={styles.postImage}
+            value={postImage}
             onChange={(e) => setPostImage(e.target.value)}
           />
+          <input type='file' onChange={handlePostImageAdd} />
           <label htmlFor='description'>Description</label>
           <input
             type='text'

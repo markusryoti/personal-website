@@ -6,6 +6,7 @@ import { parseS3Links } from '../../components/editor/parseS3Links';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import { EditorContext } from '../../context/EditorState';
+import uploadImage from '../../lib/uploadImage';
 
 import styles from '../../styles/EditPost.module.css';
 
@@ -13,7 +14,7 @@ const edit = ({ user }) => {
   const router = useRouter();
   const { postToEdit, postContent } = useContext(EditorContext);
   const [postName, setPostName] = useState(postToEdit.title);
-  const [postImage, setPostImage] = useState('');
+  const [postImage, setPostImage] = useState(postToEdit.image_url);
   const [description, setDescription] = useState(postToEdit.description);
 
   const onPostSubmit = async (e) => {
@@ -30,7 +31,9 @@ const edit = ({ user }) => {
       title: postName,
       image_url: postImage,
       description,
-      s3Links,
+      s3Links: postImage.includes(process.env.S3_BUCKET_NAME)
+        ? [...s3Links, postImage]
+        : s3Links,
     };
 
     try {
@@ -47,6 +50,14 @@ const edit = ({ user }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handlePostImageAdd = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    const response = await uploadImage(formData);
+    setPostImage(response.url);
   };
 
   return (
@@ -72,8 +83,10 @@ const edit = ({ user }) => {
             id='postimage'
             name='postimage'
             className={styles.postImage}
+            value={postImage}
             onChange={(e) => setPostImage(e.target.value)}
           />
+          <input type='file' onChange={handlePostImageAdd} />
           <label htmlFor='description'>Description</label>
           <input
             type='text'

@@ -40,12 +40,7 @@ const Post = ({ user, post }) => {
               Published:{' '}
               <em>{new Date(post.created_at).toLocaleDateString()}</em>
             </h5>
-            {post.image_url && (
-              <img
-                src='https://images.unsplash.com/photo-1526069824293-406685e85766?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-                alt='image'
-              />
-            )}
+            {post.image_url && <img src={post.image_url} alt='image' />}
           </div>
           <div
             className={styles.postBody}

@@ -2,7 +2,7 @@ import CustomEditor from './CustomEditor';
 
 import isUrl from 'is-url';
 import imageExtensions from 'image-extensions';
-import uploadImage from './uploadImage';
+import uploadImage from '../../lib/uploadImage';
 
 function withImages(editor) {
   const { insertData, isVoid } = editor;

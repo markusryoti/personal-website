@@ -35,6 +35,7 @@ router.post('/', authenticateToken, async (req: any, res, next) => {
       title,
       description,
       user_id: userId,
+      image_url,
     });
 
     for (const link of s3Links) {
