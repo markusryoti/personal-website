@@ -9,7 +9,7 @@ import Nav from '../../components/Nav';
 import { EditorContext } from '../../context/EditorState';
 import uploadImage from '../../lib/uploadImage';
 
-import styles from '../../styles/EditPost.module.css';
+import styles from '../../styles/Editpost.module.css';
 
 const edit = ({ user }) => {
   const router = useRouter();

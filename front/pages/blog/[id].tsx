@@ -5,8 +5,6 @@ import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import Post from '../../components/Post';
 
-import styles from '../../styles/Post.module.css';
-
 const post = ({ user, post }) => {
   return (
     <>
