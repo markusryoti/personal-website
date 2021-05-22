@@ -64,8 +64,8 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.dropTableIfExists(tableNames.posts);
-  await knex.schema.dropTableIfExists(tableNames.users);
   await knex.schema.dropTableIfExists(tableNames.post_images);
   await knex.schema.dropTableIfExists(tableNames.images);
+  await knex.schema.dropTableIfExists(tableNames.posts);
+  await knex.schema.dropTableIfExists(tableNames.users);
 }

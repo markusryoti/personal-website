@@ -1,0 +1,43 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"title": "Images", 
+	"type": "object",
+	"required": [
+		"url",
+		"user_id"
+	],
+	"properties": {
+		"url": {
+			"$id": "#root/url", 
+			"title": "Image url", 
+			"type": "string",
+            "pattern": "^.*$"
+		},
+		"user_id": {
+			"$id": "#root/user_id",
+			"title": "User id", 
+			"type": "integer",
+			"examples": [
+                1
+			]
+		},
+		"created_at": {
+			"$id": "#root/created_at", 
+			"title": "Created_at", 
+			"type": "string",
+			"examples": [
+				"2021-04-27T19:43:58.134Z"
+			],
+			"pattern": "^.*$"
+		},
+		"updated_at": {
+			"$id": "#root/updated_at", 
+			"title": "Updated_at", 
+			"type": "string",
+			"examples": [
+				"2021-04-27T19:43:58.134Z"
+			],
+			"pattern": "^.*$"
+		}
+	}
+}

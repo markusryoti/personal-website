@@ -2,6 +2,8 @@ import { Model } from 'objection';
 
 import tableNames from '../../constants/tableNames';
 
+import schema from './post_images.schema.json';
+
 class PostImages extends Model {
   id?: number;
   image_id?: number;
@@ -9,6 +11,10 @@ class PostImages extends Model {
 
   static get tableName() {
     return tableNames.post_images;
+  }
+
+  static get jsonSchema() {
+    return schema;
   }
 
   static get relationMappings() {

@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"title": "Post Images", 
+	"type": "object",
+	"required": [
+		"post_id",
+		"image_id"
+	],
+	"properties": {
+		"post_id": {
+			"$id": "#root/post_id", 
+			"title": "Post id", 
+			"type": "integer",
+			"examples": [
+				1
+			]
+		},
+		"image_id": {
+			"$id": "#root/image_id",
+			"title": "Image id", 
+			"type": "integer",
+			"examples": [
+                1
+			]
+		},
+		"created_at": {
+			"$id": "#root/created_at", 
+			"title": "Created_at", 
+			"type": "string",
+			"examples": [
+				"2021-04-27T19:43:58.134Z"
+			],
+			"pattern": "^.*$"
+		},
+		"updated_at": {
+			"$id": "#root/updated_at", 
+			"title": "Updated_at", 
+			"type": "string",
+			"examples": [
+				"2021-04-27T19:43:58.134Z"
+			],
+			"pattern": "^.*$"
+		}
+	}
+}
