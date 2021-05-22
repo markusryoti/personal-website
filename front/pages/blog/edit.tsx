@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Editor from '../../components/editor/Editor';
+import { initialValue } from '../../components/editor/InitialValue';
 import { parseS3Links } from '../../components/editor/parseS3Links';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
@@ -13,9 +14,13 @@ import styles from '../../styles/EditPost.module.css';
 const edit = ({ user }) => {
   const router = useRouter();
   const { postToEdit, postContent } = useContext(EditorContext);
-  const [postName, setPostName] = useState(postToEdit.title);
-  const [postImage, setPostImage] = useState(postToEdit.image_url);
-  const [description, setDescription] = useState(postToEdit.description);
+  const [postName, setPostName] = useState(postToEdit ? postToEdit.title : '');
+  const [postImage, setPostImage] = useState(
+    postToEdit ? postToEdit.image_url : ''
+  );
+  const [description, setDescription] = useState(
+    postToEdit ? postToEdit.description : ''
+  );
 
   const onPostSubmit = async (e) => {
     e.preventDefault();
@@ -31,8 +36,10 @@ const edit = ({ user }) => {
       title: postName,
       image_url: postImage,
       description,
-      s3Links: postImage.includes(process.env.S3_BUCKET_NAME)
-        ? [...s3Links, postImage]
+      s3Links: postImage
+        ? postImage.includes(process.env.S3_BUCKET_NAME)
+          ? [...s3Links, postImage]
+          : s3Links
         : s3Links,
     };
 
@@ -96,7 +103,9 @@ const edit = ({ user }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <Editor initialValue={postToEdit.content} />
+          <Editor
+            initialValue={postToEdit ? postToEdit.content : initialValue}
+          />
           <input
             type='button'
             className='btn btn-success'

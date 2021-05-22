@@ -30,8 +30,12 @@ const newpost = ({ user }) => {
         title: postName,
         description,
         image_url: postImage,
-        s3Links: postImage.includes(process.env.S3_BUCKET_NAME)
-          ? [...s3Links, postImage]
+
+        // Change this garbage
+        s3Links: postImage
+          ? postImage.includes(process.env.S3_BUCKET_NAME)
+            ? [...s3Links, postImage]
+            : s3Links
           : s3Links,
       });
 
