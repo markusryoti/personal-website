@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Nav from '../components/Nav';
 
 import styles from '../styles/Signup.module.css';
-import edit from './blog/edit';
 
 const signup = ({ user, setUser }) => {
   const [formData, setFormData] = useState({
@@ -28,7 +27,7 @@ const signup = ({ user, setUser }) => {
 
     try {
       const res = await axios.post(
-        `${process.env.API_URL}/auth/signup/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/signup/`,
         formData
       );
       if (res.status === 200) {

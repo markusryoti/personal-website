@@ -2,11 +2,15 @@ import axios from 'axios';
 
 async function uploadImage(form) {
   try {
-    const res = await axios.post(`${process.env.API_URL}/images`, form, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/images`,
+      form,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
     if (res.status === 200) {
       return res.data;
     }

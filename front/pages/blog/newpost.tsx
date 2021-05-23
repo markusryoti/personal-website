@@ -23,21 +23,26 @@ const newpost = ({ user }) => {
       const s3Links = postContent
         .map((p) => parseS3Links(p))
         .filter((arr) => arr.length > 0)
-        .filter((item) => item.includes(process.env.S3_BUCKET_NAME));
+        .filter((item) =>
+          item.includes(process.env.NEXT_PUBLIC_S3_BUCKET_NAME)
+        );
 
-      const res = await axios.post(`${process.env.API_URL}/posts/`, {
-        content: JSON.stringify(postContent),
-        title: postName,
-        description,
-        image_url: postImage,
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/posts/`,
+        {
+          content: JSON.stringify(postContent),
+          title: postName,
+          description,
+          image_url: postImage,
 
-        // Change this garbage
-        s3Links: postImage
-          ? postImage.includes(process.env.S3_BUCKET_NAME)
-            ? [...s3Links, postImage]
-            : s3Links
-          : s3Links,
-      });
+          // Change this garbage
+          s3Links: postImage
+            ? postImage.includes(process.env.NEXT_PUBLIC_S3_BUCKET_NAME)
+              ? [...s3Links, postImage]
+              : s3Links
+            : s3Links,
+        }
+      );
 
       if (res.status === 200) {
         router.push('/blog');

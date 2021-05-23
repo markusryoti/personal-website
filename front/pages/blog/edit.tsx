@@ -28,7 +28,7 @@ const edit = ({ user }) => {
     const s3Links = postContent
       .map((p) => parseS3Links(p))
       .filter((arr) => arr.length > 0)
-      .filter((item) => item.includes(process.env.S3_BUCKET_NAME));
+      .filter((item) => item.includes(process.env.NEXT_PUBLIC_S3_BUCKET_NAME));
 
     const editedPost = {
       ...postToEdit,
@@ -37,7 +37,7 @@ const edit = ({ user }) => {
       image_url: postImage,
       description,
       s3Links: postImage
-        ? postImage.includes(process.env.S3_BUCKET_NAME)
+        ? postImage.includes(process.env.NEXT_PUBLIC_S3_BUCKET_NAME)
           ? [...s3Links, postImage]
           : s3Links
         : s3Links,
@@ -45,7 +45,7 @@ const edit = ({ user }) => {
 
     try {
       const res = await axios.patch(
-        `${process.env.API_URL}/posts/${postToEdit.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/posts/${postToEdit.id}`,
         editedPost
       );
 

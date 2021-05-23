@@ -19,7 +19,7 @@ const login = ({ user, setUser }) => {
 
     try {
       const res = await axios.post(
-        `${process.env.API_URL}/auth/login/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/login/`,
         formValues
       );
       if (res.status === 200) {
@@ -37,27 +37,27 @@ const login = ({ user, setUser }) => {
   return (
     <>
       <Nav user={user} />
-      <div className="center-children">
-        <div className="container">
+      <div className='center-children'>
+        <div className='container'>
           <form className={styles.form}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor='email'>Email</label>
             <input
-              type="text"
-              id="email"
-              name="email"
+              type='text'
+              id='email'
+              name='email'
               onChange={handleChange}
             />
-            <label htmlFor="password">Password</label>
+            <label htmlFor='password'>Password</label>
             <input
-              type="password"
-              id="password"
-              name="password"
+              type='password'
+              id='password'
+              name='password'
               onChange={handleChange}
             />
             <input
-              type="submit"
-              value="Login"
-              className="btn btn-success"
+              type='submit'
+              value='Login'
+              className='btn btn-success'
               onClick={handleLogin}
             />
           </form>

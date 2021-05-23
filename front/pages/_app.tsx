@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
     const token = localStorage.getItem('token');
     if (token && !user) {
       axios
-        .get(`${process.env.API_URL}/auth/load-user`, {
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/auth/load-user`, {
           headers: {
             Authorization: token,
           },

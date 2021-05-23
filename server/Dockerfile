@@ -20,4 +20,4 @@ WORKDIR /usr/src/app/build
 
 EXPOSE 5000
 
-CMD node src/index.js
+CMD ["node", "src/index.js"]

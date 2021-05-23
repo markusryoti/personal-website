@@ -25,7 +25,7 @@ const blog = ({ posts, user }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await axios.get(`${process.env.API_URL}/posts/`);
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/`);
   const posts = res.data;
 
   return {
