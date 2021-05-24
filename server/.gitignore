@@ -3,4 +3,5 @@ node_modules
 .env.prod
 build
 docker-data
+docker-dev
 docker-compose.prod.yml

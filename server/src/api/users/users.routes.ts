@@ -1,9 +1,10 @@
 import express from 'express';
+import { authenticateToken } from '../../middlewares';
 import Users from './users.model';
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', authenticateToken, async (req, res, next) => {
   try {
     const posts = await Users.query();
     res.json(posts);
@@ -12,7 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', authenticateToken, async (req, res, next) => {
   const { id } = req.params;
   try {
     const posts = await Users.query().findById(id);

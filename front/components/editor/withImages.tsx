@@ -11,8 +11,7 @@ function withImages(editor) {
     return element.type === 'image' ? true : isVoid(element);
   };
 
-  // Drag and drop
-  // Could do server upload stuff here
+  // This is for copy pasting an image to the editor
   editor.insertData = (data) => {
     const text = data.getData('text/plain');
     const { files } = data;
@@ -29,7 +28,9 @@ function withImages(editor) {
 
             try {
               const { url } = await uploadImage(form);
-              CustomEditor.insertImage(editor, url);
+              if (url) {
+                CustomEditor.insertImage(editor, url);
+              }
             } catch (error) {
               console.log(error);
             }

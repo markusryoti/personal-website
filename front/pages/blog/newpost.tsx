@@ -21,9 +21,9 @@ const newpost = ({ user }) => {
   const onPostSubmit = async () => {
     try {
       const s3Links = postContent
-        .map((p) => parseS3Links(p))
-        .filter((arr) => arr.length > 0)
-        .filter((item) =>
+        .map((p: any) => parseS3Links(p))
+        .filter((arr: string | any[]) => arr.length > 0)
+        .filter((item: string | string[]) =>
           item.includes(process.env.NEXT_PUBLIC_S3_BUCKET_NAME)
         );
 

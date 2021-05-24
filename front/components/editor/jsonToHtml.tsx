@@ -45,8 +45,6 @@ export const renderJsonToHtml = (props) => {
       );
     default:
       return <div>{props.children}</div>;
-    // default:
-    //   return <DefaultElement {...props} />;
   }
 };
 

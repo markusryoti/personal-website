@@ -1,5 +1,10 @@
 import { Text } from 'slate';
 
+/**
+ *
+ * @param node Slate document node
+ * @returns HTML string that can be injected to a post
+ */
 function serialize(node) {
   if (Text.isText(node)) {
     let string = node.text;

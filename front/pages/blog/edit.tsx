@@ -26,9 +26,11 @@ const edit = ({ user }) => {
     e.preventDefault();
 
     const s3Links = postContent
-      .map((p) => parseS3Links(p))
-      .filter((arr) => arr.length > 0)
-      .filter((item) => item.includes(process.env.NEXT_PUBLIC_S3_BUCKET_NAME));
+      .map((p: any) => parseS3Links(p))
+      .filter((arr: string | any[]) => arr.length > 0)
+      .filter((item: string | string[]) =>
+        item.includes(process.env.NEXT_PUBLIC_S3_BUCKET_NAME)
+      );
 
     const editedPost = {
       ...postToEdit,

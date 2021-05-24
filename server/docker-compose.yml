@@ -16,7 +16,7 @@ services:
     container_name: ${POSTGRES_DB}
     restart: always
     volumes:
-      - ./docker-data/db-data:/var/lib/postgresql/data
+      - ./docker-dev/db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
