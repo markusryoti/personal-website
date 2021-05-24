@@ -2,6 +2,7 @@ import axios from 'axios';
 import router from 'next/router';
 import React, { useState } from 'react';
 import Nav from '../components/Nav';
+import setAuthToken from '../lib/setAuthToken';
 
 import styles from '../styles/Signup.module.css';
 
@@ -33,6 +34,7 @@ const signup = ({ user, setUser }) => {
       if (res.status === 200) {
         setUser(res.data.user);
         localStorage.setItem('token', res.data.token);
+        setAuthToken(res.data.token);
         router.push('/');
         return;
       }

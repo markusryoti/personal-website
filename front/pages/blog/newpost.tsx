@@ -87,7 +87,11 @@ const newpost = ({ user }) => {
             value={postImage}
             onChange={(e) => setPostImage(e.target.value)}
           />
-          <input type='file' onChange={handlePostImageAdd} />
+          <input
+            type='file'
+            onChange={handlePostImageAdd}
+            className={styles.fileUpload}
+          />
           <label htmlFor='description'>Description</label>
           <input
             type='text'

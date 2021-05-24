@@ -74,7 +74,7 @@ const edit = ({ user }) => {
       <Nav user={user} />
       <div className='center-children'>
         <div className='container'>
-          <h1 className={styles.heading}>New Post</h1>
+          <h1 className={styles.heading}>Edit Post</h1>
           <label htmlFor='postname' className={styles.newPostLabel}>
             Post Name
           </label>
@@ -95,7 +95,11 @@ const edit = ({ user }) => {
             value={postImage}
             onChange={(e) => setPostImage(e.target.value)}
           />
-          <input type='file' onChange={handlePostImageAdd} />
+          <input
+            type='file'
+            onChange={handlePostImageAdd}
+            className={styles.fileUpload}
+          />
           <label htmlFor='description'>Description</label>
           <input
             type='text'

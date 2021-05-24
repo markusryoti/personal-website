@@ -32,8 +32,10 @@ const Nav = ({ user }) => {
   const handleSignOut = () => {
     setAuthToken('');
     localStorage.removeItem('token');
+    router.push('/');
     // TODO
-    // Set user object to null
+    // User should be set to null
+    // Need to use context or something?
   };
 
   return (

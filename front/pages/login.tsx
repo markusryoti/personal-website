@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import styles from '../styles/Login.module.css';
 import router from 'next/router';
+import setAuthToken from '../lib/setAuthToken';
 
 const login = ({ user, setUser }) => {
   const [formValues, setFormValues] = useState({ email: '', password: '' });
@@ -25,6 +26,7 @@ const login = ({ user, setUser }) => {
       if (res.status === 200) {
         setUser(res.data.user);
         localStorage.setItem('token', res.data.token);
+        setAuthToken(res.data.token);
         router.push('/');
         return;
       }

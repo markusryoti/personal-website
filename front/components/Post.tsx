@@ -42,6 +42,12 @@ const Post = ({ user, post }) => {
               Published:{' '}
               <em>{new Date(post.created_at).toLocaleDateString()}</em>
             </h5>
+            {post.updated_at !== post.created_at && (
+              <h5>
+                Edited:{' '}
+                <em>{new Date(post.updated_at).toLocaleDateString()}</em>
+              </h5>
+            )}
             {post.image_url && <img src={post.image_url} alt='image' />}
           </div>
           <div

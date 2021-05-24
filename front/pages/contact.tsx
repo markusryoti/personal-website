@@ -11,7 +11,7 @@ const contact = ({ user }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    subject: 'Say Hi!',
     category: '',
     message: '',
   });
@@ -25,12 +25,17 @@ const contact = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/mail`,
-      formData
-    );
-    if (res.status === 200) {
-      router.push('/thankyou');
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/mail`,
+        formData
+      );
+      if (res.status === 200) {
+        router.push('/thankyou');
+      }
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
