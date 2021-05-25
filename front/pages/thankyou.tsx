@@ -2,10 +2,10 @@ import React from 'react';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 
-const thankyou = ({ user }) => {
+const thankyou = () => {
   return (
     <>
-      <Nav user={user} />
+      <Nav />
       <div className="center-children">
         <div className="container">
           <h1>Thank You for the message, I will we be in touch!</h1>

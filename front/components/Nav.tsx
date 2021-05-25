@@ -6,12 +6,15 @@ import styles from '../styles/Nav.module.css';
 import { EditorContext } from '../context/EditorState';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import setAuthToken from '../lib/setAuthToken';
+import { UserContext } from '../context/UserState';
 
-const Nav = ({ user }) => {
+const Nav = () => {
   const router = useRouter();
   const { height, width } = useWindowDimensions();
   const [linksVisible, setLinksVisible] = useState(width > 600 ? true : false);
 
+  const userContext = useContext(UserContext);
+  const { user, setUser } = userContext;
   const editorContext = useContext(EditorContext);
   const { setPostToEdit } = editorContext;
 
@@ -32,10 +35,7 @@ const Nav = ({ user }) => {
   const handleSignOut = () => {
     setAuthToken('');
     localStorage.removeItem('token');
-    router.push('/');
-    // TODO
-    // User should be set to null
-    // Need to use context or something?
+    setUser(null);
   };
 
   return (
@@ -52,22 +52,22 @@ const Nav = ({ user }) => {
         <div className={styles.navLinks}>
           <ul>
             <li className={!currentPath ? styles.active : ''}>
-              <Link href='/'>
+              <Link href="/">
                 <a>Home</a>
               </Link>
             </li>
             <li className={currentPath === 'about' ? styles.active : ''}>
-              <Link href='/about'>
+              <Link href="/about">
                 <a>About</a>
               </Link>
             </li>
             <li className={currentPath === 'blog' ? styles.active : ''}>
-              <Link href='/blog'>
+              <Link href="/blog">
                 <a>Blog</a>
               </Link>
             </li>
             <li className={currentPath === 'contact' ? styles.active : ''}>
-              <Link href='/contact'>
+              <Link href="/contact">
                 <a>Contact</a>
               </Link>
             </li>
@@ -78,21 +78,21 @@ const Nav = ({ user }) => {
                     setPostToEdit(null);
                   }}
                 >
-                  <Link href='/blog/newpost'>
+                  <Link href="/blog/newpost">
                     <a>
-                      New Post <i className='fas fa-plus-circle'></i>
+                      New Post <i className="fas fa-plus-circle"></i>
                     </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href='#'>
+                  <Link href="#">
                     <a>{user.username}</a>
                   </Link>
                 </li>
                 <li onClick={handleSignOut}>
-                  <Link href='#'>
+                  <Link href="#">
                     <a>
-                      Signout <i className='fas fa-sign-out-alt' />
+                      Signout <i className="fas fa-sign-out-alt" />
                     </a>
                   </Link>
                 </li>
@@ -109,17 +109,17 @@ const Nav = ({ user }) => {
               setPostToEdit(null);
             }}
           >
-            <Link href='/blog/newpost'>
+            <Link href="/blog/newpost">
               <a>
-                New Post <i className='fas fa-plus-circle'></i>
+                New Post <i className="fas fa-plus-circle"></i>
               </a>
             </Link>
           </div>
           <div>{user.username}</div>
           <div className={styles.signoutButton} onClick={handleSignOut}>
-            <Link href='#'>
+            <Link href="#">
               <a>
-                <i className='fas fa-sign-out-alt' />
+                <i className="fas fa-sign-out-alt" />
               </a>
             </Link>
           </div>

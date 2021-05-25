@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-
-import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 
 import '../styles/globals.css';
 import EditorState from '../context/EditorState';
+import UserState, { UserContext } from '../context/UserState';
+import axios from 'axios';
 import setAuthToken from '../lib/setAuthToken';
 
 export interface IUser {
@@ -14,7 +14,7 @@ export interface IUser {
 }
 
 function MyApp({ Component, pageProps }) {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
             Authorization: token,
           },
         })
-        .then((res) => {
+        .then(res => {
           if (res.status === 200) {
             const user = res.data;
             setUser(user);
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
           // Invalid token
           setAuthToken('');
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     }
     setUser(null);
   }, []);
@@ -44,11 +44,13 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>markusryoti.io</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <EditorState>
-        <Component {...pageProps} user={user} setUser={setUser} />
-      </EditorState>
+      <UserState user={user}>
+        <EditorState>
+          <Component {...pageProps} />
+        </EditorState>
+      </UserState>
     </>
   );
 }
