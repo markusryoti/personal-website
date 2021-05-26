@@ -7,10 +7,10 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p>markusryoti - 2021</p>
       <div className={styles.container}>
-        <a href="#">
+        <a href="https://www.linkedin.com/in/markusryoti" target="_blank">
           <i className="fab fa-2x fa-linkedin"></i>
         </a>
-        <a href="#">
+        <a href="https://github.com/markusryoti" target="_blank">
           <i className="fab fa-2x fa-github"></i>
         </a>
         <a href="/contact">

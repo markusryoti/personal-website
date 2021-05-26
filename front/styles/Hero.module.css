@@ -43,11 +43,14 @@
 .hero .body h1 {
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .hero .body p {
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 @media only screen and (min-width: 1350px) {

@@ -14,7 +14,8 @@
 
 .cardContainer {
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
 }
 
 .textBlock {
@@ -25,8 +26,28 @@
   margin-bottom: 1rem;
 }
 
-@media only screen and (max-width: 600px) {
-  .cardContainer {
-    flex-wrap: wrap;
+.card {
+  flex: 1;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid var(--primary);
+  box-shadow: 6px 12px var(--primary);
+  min-width: 350px;
+  max-width: 600px;
+}
+
+.card ul {
+  margin: 0 1rem;
+}
+
+.contactAction {
+  text-align: center;
+  margin: 6rem auto;
+}
+
+@media only screen and (max-width: 400px) {
+  .card {
+    width: 300px;
+    min-width: auto;
   }
 }
