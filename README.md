@@ -1,6 +1,8 @@
 # Personal website 🏠
 
-This is a repository for personal website. Currently not yet deployed.
+This is a repository for personal website. Currently only an unfinished development version is applied:
+
+https://personal-website-ruby-five.vercel.app/
 
 ## Frontend
 
@@ -8,4 +10,4 @@ Next.js
 
 ## Backend
 
-Express server, Postgres database
+Express server, Postgres database. Containerized with docker.

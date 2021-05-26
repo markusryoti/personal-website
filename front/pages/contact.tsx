@@ -44,7 +44,13 @@ const contact = () => {
       <Nav />
       <div className="center-children">
         <div className="container">
-          <h1>Let's get in touch.</h1>
+          <div className={styles.headingArea}>
+            <h1>Let's get in touch.</h1>
+            <p>
+              Whether you want to talk business or just chat about whatever
+              don't hesitate to shoot an email here!
+            </p>
+          </div>
           <form action="#" className={styles.form}>
             <input
               type="text"
