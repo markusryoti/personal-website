@@ -16,10 +16,10 @@ Api and database are containerized with docker-compose. Environment variables in
 
 `docker exec -it api npm run migrate`
 
-### Seed database in development
-
-`docker exec -it api npm run seed`
-
 ### Stop
 
 `docker-compose down`
+
+### For me personally, create a production build
+
+`docker-compose -f docker-compose.prod.yml build`
