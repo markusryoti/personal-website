@@ -9,6 +9,10 @@ const PostPreview = ({ post }) => {
       <div>
         <h1>{post.title}</h1>
         <p>{post.description}</p>
+        <h5>
+          Published: <em>{new Date(post.created_at).toLocaleDateString()}</em>
+        </h5>
+        {post.image_url && <img src={post.image_url} alt='Post Image' />}
         <div
           dangerouslySetInnerHTML={{ __html: post.body }}
           className={styles.bodyContainer}

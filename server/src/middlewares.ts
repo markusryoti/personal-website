@@ -26,10 +26,7 @@ export function errorHandler(error: any, req: any, res: any, next: any) {
 
   res.status(statusCode).json({
     message: error.message,
-    stack:
-      process.env.NODE_ENV === 'production'
-        ? 'Something went wrong in the server'
-        : error.stack,
+    stack: process.env.NODE_ENV === 'production' ? '😭' : error.stack,
     errors: error.errors || undefined,
   });
 }

@@ -6,14 +6,14 @@ import PostPreview from '../../components/PostPreview';
 
 import styles from '../../styles/Blog.module.css';
 
-const blog = ({ posts, user }) => {
+const blog = ({ posts }) => {
   return (
     <>
-      <Nav user={user} />
-      <div className='center-children'>
+      <Nav />
+      <div className="center-children">
         <div className={styles.postsContainer}>
           {posts.length > 0 ? (
-            posts.map((post) => <PostPreview key={post.id} post={post} />)
+            posts.map(post => <PostPreview key={post.id} post={post} />)
           ) : (
             <h1 style={{ margin: '5rem 5rem' }}>No Posts Yet!</h1>
           )}

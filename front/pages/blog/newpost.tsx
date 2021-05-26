@@ -11,7 +11,7 @@ import uploadImage from '../../lib/uploadImage';
 
 import styles from '../../styles/NewPost.module.css';
 
-const newpost = ({ user }) => {
+const newpost = () => {
   const router = useRouter();
   const [postName, setPostName] = useState('');
   const [description, setDescription] = useState('');
@@ -54,7 +54,7 @@ const newpost = ({ user }) => {
     }
   };
 
-  const handlePostImageAdd = async (e) => {
+  const handlePostImageAdd = async e => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('image', file);
@@ -64,43 +64,47 @@ const newpost = ({ user }) => {
 
   return (
     <>
-      <Nav user={user} />
-      <div className='center-children'>
-        <div className='container'>
+      <Nav />
+      <div className="center-children">
+        <div className="container">
           <h1 className={styles.heading}>New Post</h1>
-          <label htmlFor='postname' className={styles.newPostLabel}>
+          <label htmlFor="postname" className={styles.newPostLabel}>
             Post Name
           </label>
           <input
-            type='text'
-            name='postname'
-            id='postname'
+            type="text"
+            name="postname"
+            id="postname"
             className={styles.postName}
-            onChange={(e) => setPostName(e.target.value)}
+            onChange={e => setPostName(e.target.value)}
           />
-          <label htmlFor='postimage'>Main Post Image</label>
+          <label htmlFor="postimage">Main Post Image</label>
           <input
-            type='text'
-            id='postimage'
-            name='postimage'
+            type="text"
+            id="postimage"
+            name="postimage"
             className={styles.postImage}
             value={postImage}
-            onChange={(e) => setPostImage(e.target.value)}
+            onChange={e => setPostImage(e.target.value)}
           />
-          <input type='file' onChange={handlePostImageAdd} />
-          <label htmlFor='description'>Description</label>
           <input
-            type='text'
-            name='description'
-            id='description'
+            type="file"
+            onChange={handlePostImageAdd}
+            className={styles.fileUpload}
+          />
+          <label htmlFor="description">Description</label>
+          <input
+            type="text"
+            name="description"
+            id="description"
             className={styles.description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={e => setDescription(e.target.value)}
           />
           <Editor initialValue={initialValue} />
           <input
-            type='button'
-            className='btn btn-success'
-            value='Submit'
+            type="button"
+            className="btn btn-success"
+            value="Submit"
             onClick={onPostSubmit}
           />
         </div>

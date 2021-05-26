@@ -11,6 +11,8 @@ class Posts extends Model {
   image_url?: string;
   content?: string;
   user_id?: number;
+  created_at?: string;
+  updated_at?: string;
 
   static get tableName() {
     return tableNames.posts;

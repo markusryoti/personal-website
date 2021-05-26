@@ -6,7 +6,6 @@ export interface IProvider {
   postImages: string[];
   setPostContent: (content: object) => void;
   setPostToEdit: (post: null) => void;
-  setPostImages: (images: string[]) => void;
 }
 
 export const EditorContext = createContext<IProvider | null>(null);
@@ -23,11 +22,6 @@ function editorReducer(state, action) {
         ...state,
         postToEdit: action.payload,
       };
-    case 'SET_POST_IMAGES':
-      return {
-        ...state,
-        postImages: action.payload,
-      };
     default:
       return state;
   }
@@ -42,16 +36,12 @@ export default function EditorState(props) {
 
   const [state, dispatch] = useReducer(editorReducer, initialState);
 
-  const setPostContent = (content) => {
+  const setPostContent = content => {
     dispatch({ type: 'SET_CONTENT', payload: content });
   };
 
-  const setPostToEdit = (post) => {
+  const setPostToEdit = post => {
     dispatch({ type: 'SET_POST_TO_EDIT', payload: post });
-  };
-
-  const setPostImages = (images) => {
-    dispatch({ type: 'SET_POST_IMAGES', payload: images });
   };
 
   return (
@@ -62,7 +52,6 @@ export default function EditorState(props) {
         postImages: state.postImages,
         setPostContent,
         setPostToEdit,
-        setPostImages,
       }}
     >
       {props.children}

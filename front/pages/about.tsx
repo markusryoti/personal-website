@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import { UserContext } from '../context/UserState';
 
 import styles from '../styles/About.module.css';
 
-const about = ({ user }) => {
+const about = () => {
+  const userContext = useContext(UserContext);
   return (
     <>
-      <Nav user={user} />
+      <Nav />
       <div className={styles.center}>
         <div className="container">
           <h1 className={styles.heading}>Lorem ipsum dolor sit amet.</h1>

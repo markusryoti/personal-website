@@ -1,11 +1,16 @@
 import axios from 'axios';
 import router from 'next/router';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Nav from '../components/Nav';
+import { UserContext } from '../context/UserState';
+import setAuthToken from '../lib/setAuthToken';
 
 import styles from '../styles/Signup.module.css';
 
-const signup = ({ user, setUser }) => {
+const signup = () => {
+  const userContext = useContext(UserContext);
+  const { setUser } = userContext;
+
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -18,7 +23,7 @@ const signup = ({ user, setUser }) => {
     const { value, name } = e.currentTarget;
     setFormData({ ...formData, [name]: value });
   };
-  const handleSignup = async (e) => {
+  const handleSignup = async e => {
     e.preventDefault();
     if (formData.password !== password2) {
       alert('Passwords dont match!');
@@ -33,6 +38,7 @@ const signup = ({ user, setUser }) => {
       if (res.status === 200) {
         setUser(res.data.user);
         localStorage.setItem('token', res.data.token);
+        setAuthToken(res.data.token);
         router.push('/');
         return;
       }
@@ -44,49 +50,49 @@ const signup = ({ user, setUser }) => {
 
   return (
     <>
-      <Nav user={user} />
-      <div className='center-children'>
-        <div className='container'>
+      <Nav />
+      <div className="center-children">
+        <div className="container">
           <form className={styles.form}>
-            <label htmlFor='email'>Email</label>
+            <label htmlFor="email">Email</label>
             <input
-              type='text'
-              id='email'
-              name='email'
+              type="text"
+              id="email"
+              name="email"
               onChange={handleChange}
             />
-            <label htmlFor='username'>Username</label>
+            <label htmlFor="username">Username</label>
             <input
-              type='text'
-              id='username'
-              name='username'
+              type="text"
+              id="username"
+              name="username"
               onChange={handleChange}
             />
-            <label htmlFor='password'>Password</label>
+            <label htmlFor="password">Password</label>
             <input
-              type='password'
-              id='password'
-              name='password'
+              type="password"
+              id="password"
+              name="password"
               onChange={handleChange}
             />
-            <label htmlFor='password2'>Confirm password</label>
+            <label htmlFor="password2">Confirm password</label>
             <input
-              type='password'
-              id='password2'
-              name='password2'
-              onChange={(e) => setPassword2(e.target.value)}
+              type="password"
+              id="password2"
+              name="password2"
+              onChange={e => setPassword2(e.target.value)}
             />
-            <label htmlFor='token'>Register Token</label>
+            <label htmlFor="token">Register Token</label>
             <input
-              type='text'
-              id='token'
-              name='registerToken'
+              type="text"
+              id="token"
+              name="registerToken"
               onChange={handleChange}
             />
             <input
-              type='submit'
-              value='Login'
-              className='btn btn-success'
+              type="submit"
+              value="Login"
+              className="btn btn-success"
               onClick={handleSignup}
             />
           </form>

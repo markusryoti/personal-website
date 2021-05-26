@@ -65,7 +65,13 @@ router.patch('/:id', authenticateToken, async (req: any, res, next) => {
     }
 
     const success = await Posts.query()
-      .patch({ title, content, description, image_url })
+      .patch({
+        title,
+        content,
+        description,
+        image_url,
+        updated_at: new Date().toISOString(),
+      })
       .findById(id);
 
     if (!success) {

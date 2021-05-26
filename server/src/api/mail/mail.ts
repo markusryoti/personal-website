@@ -45,7 +45,7 @@ export async function sendMail(
 
     const mailOptions: Mail.Options = {
       from: email,
-      to: EMAIL_ADDRESS,
+      to: EMAIL_ADDRESS as string,
       replyTo: email,
       subject: subject,
       text: message,
@@ -74,7 +74,7 @@ function textToHtml(
     <br>
     ${body
       .split('\n')
-      .map(paragraph => (paragraph ? `<p>${paragraph}</p>` : '<p></p>'))
+      .map((paragraph) => (paragraph ? `<p>${paragraph}</p>` : '<p></p>'))
       .join('\n')}
   `;
 }

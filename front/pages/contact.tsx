@@ -6,60 +6,65 @@ import Nav from '../components/Nav';
 
 import styles from '../styles/Contact.module.css';
 
-const contact = ({ user }) => {
+const contact = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    subject: 'Say Hi!',
     category: '',
     message: '',
   });
 
-  const onFormElementChange = (e) => {
+  const onFormElementChange = e => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/mail`,
-      formData
-    );
-    if (res.status === 200) {
-      router.push('/thankyou');
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/mail`,
+        formData
+      );
+      if (res.status === 200) {
+        router.push('/thankyou');
+      }
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <>
-      <Nav user={user} />
-      <div className='center-children'>
-        <div className='container'>
+      <Nav />
+      <div className="center-children">
+        <div className="container">
           <h1>Let's get in touch.</h1>
-          <form action='#' className={styles.form}>
+          <form action="#" className={styles.form}>
             <input
-              type='text'
-              placeholder='Your Name'
-              name='name'
+              type="text"
+              placeholder="Your Name"
+              name="name"
               onChange={onFormElementChange}
             />
             <input
-              type='email'
-              placeholder='Your Email'
-              name='email'
+              type="email"
+              placeholder="Your Email"
+              name="email"
               onChange={onFormElementChange}
             />
             <input
-              type='text'
-              placeholder='Subject'
-              name='subject'
+              type="text"
+              placeholder="Subject"
+              name="subject"
               onChange={onFormElementChange}
             />
-            <select name='category' onChange={onFormElementChange}>
+            <select name="category" onChange={onFormElementChange}>
               <option>Say Hi!</option>
               <option>Business</option>
               <option>Coding</option>
@@ -67,14 +72,14 @@ const contact = ({ user }) => {
               <option>Other</option>
             </select>
             <textarea
-              placeholder='Message'
-              name='message'
+              placeholder="Message"
+              name="message"
               onChange={onFormElementChange}
             ></textarea>
             <input
-              type='submit'
-              value='Send'
-              className='btn btn-success'
+              type="submit"
+              value="Send"
+              className="btn btn-success"
               onClick={handleSubmit}
             />
           </form>

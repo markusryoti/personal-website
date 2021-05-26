@@ -5,3 +5,13 @@
 .previewContainer h1 {
   margin: 1rem 0;
 }
+
+.previewContainer h5 {
+  margin: 0 0;
+  font-weight: 400;
+}
+
+.previewContainer img {
+  height: 300px;
+  width: auto;
+}

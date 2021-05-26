@@ -2,12 +2,15 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { EditorContext } from '../context/EditorState';
+import { UserContext } from '../context/UserState';
 
 import styles from '../styles/Post.module.css';
 import serialize from './serialize/serialize';
 
-const Post = ({ user, post }) => {
+const Post = ({ post }) => {
   const router = useRouter();
+  const userContext = useContext(UserContext);
+  const { user } = userContext;
   const editorContext = useContext(EditorContext);
   const { setPostToEdit } = editorContext;
 
@@ -33,7 +36,7 @@ const Post = ({ user, post }) => {
 
   return (
     <div className={`center-children ${styles.center}`}>
-      <div className='container'>
+      <div className="container">
         <div className={styles.postContent}>
           <div className={styles.postHeader}>
             <h1>{post.title}</h1>
@@ -42,12 +45,18 @@ const Post = ({ user, post }) => {
               Published:{' '}
               <em>{new Date(post.created_at).toLocaleDateString()}</em>
             </h5>
-            {post.image_url && <img src={post.image_url} alt='image' />}
+            {post.updated_at !== post.created_at && (
+              <h5>
+                Edited:{' '}
+                <em>{new Date(post.updated_at).toLocaleDateString()}</em>
+              </h5>
+            )}
+            {post.image_url && <img src={post.image_url} alt="image" />}
           </div>
           <div
             className={styles.postBody}
             dangerouslySetInnerHTML={{
-              __html: post.content.map((post) => serialize(post)).join(''),
+              __html: post.content.map(post => serialize(post)).join(''),
             }}
           ></div>
         </div>
@@ -55,15 +64,15 @@ const Post = ({ user, post }) => {
       {user && user.id === post.user_id && (
         <div className={styles.actionButtonContainer}>
           <input
-            type='button'
-            value='Edit'
-            className='btn btn-info'
+            type="button"
+            value="Edit"
+            className="btn btn-info"
             onClick={handleEdit}
           />
           <input
-            type='button'
-            value='Remove'
-            className='btn btn-danger'
+            type="button"
+            value="Remove"
+            className="btn btn-danger"
             onClick={handleDelete}
           />
         </div>

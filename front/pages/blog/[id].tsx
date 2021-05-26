@@ -5,15 +5,15 @@ import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import Post from '../../components/Post';
 
-const post = ({ user, post }) => {
+const post = ({ post }) => {
   return (
     <>
       <Head>
         <title>{post.title}</title>
       </Head>
-      <Nav user={user} />
+      <Nav />
       {post ? (
-        <Post post={post} user={user} />
+        <Post post={post} />
       ) : (
         <h1 style={{ margin: '5rem 5rem' }}>No such post</h1>
       )}

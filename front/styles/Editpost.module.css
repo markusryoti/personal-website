@@ -29,5 +29,9 @@
   width: 90%;
   font-size: 1rem;
   font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.fileUpload {
   margin-bottom: 2rem;
 }

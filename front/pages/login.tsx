@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Nav from '../components/Nav';
 
 import axios from 'axios';
 
 import styles from '../styles/Login.module.css';
 import router from 'next/router';
+import setAuthToken from '../lib/setAuthToken';
+import { UserContext } from '../context/UserState';
 
-const login = ({ user, setUser }) => {
+const login = () => {
   const [formValues, setFormValues] = useState({ email: '', password: '' });
+
+  const userContext = useContext(UserContext);
+  const { setUser } = userContext;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
@@ -25,6 +30,7 @@ const login = ({ user, setUser }) => {
       if (res.status === 200) {
         setUser(res.data.user);
         localStorage.setItem('token', res.data.token);
+        setAuthToken(res.data.token);
         router.push('/');
         return;
       }
@@ -36,28 +42,28 @@ const login = ({ user, setUser }) => {
 
   return (
     <>
-      <Nav user={user} />
-      <div className='center-children'>
-        <div className='container'>
+      <Nav />
+      <div className="center-children">
+        <div className="container">
           <form className={styles.form}>
-            <label htmlFor='email'>Email</label>
+            <label htmlFor="email">Email</label>
             <input
-              type='text'
-              id='email'
-              name='email'
+              type="text"
+              id="email"
+              name="email"
               onChange={handleChange}
             />
-            <label htmlFor='password'>Password</label>
+            <label htmlFor="password">Password</label>
             <input
-              type='password'
-              id='password'
-              name='password'
+              type="password"
+              id="password"
+              name="password"
               onChange={handleChange}
             />
             <input
-              type='submit'
-              value='Login'
-              className='btn btn-success'
+              type="submit"
+              value="Login"
+              className="btn btn-success"
               onClick={handleLogin}
             />
           </form>
