@@ -30,8 +30,8 @@
   flex: 1;
   padding: 1rem;
   margin: 1rem;
-  border: 1px solid var(--primary);
-  box-shadow: 6px 12px var(--primary);
+  border: 1px solid var(--primary-light);
+  box-shadow: 6px 12px var(--primary-light);
   min-width: 350px;
   max-width: 600px;
 }

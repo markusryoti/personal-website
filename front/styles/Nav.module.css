@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   height: 5rem;
-  background-color: var(--primary);
+  background-color: var(--primary-light);
 }
 
 .brandTitle {
@@ -34,7 +34,7 @@
 }
 
 .nav .navLinks ul li:hover {
-  background: var(--primary-hover);
+  background: var(--primary);
 }
 
 .nav .navLinks ul li a {
@@ -50,7 +50,7 @@
 }
 
 .active {
-  background: var(--primary-hover);
+  background: var(--primary);
 }
 
 .burger {
@@ -65,7 +65,7 @@
 }
 
 .burger:hover {
-  background: var(--primary-hover);
+  background: var(--primary);
 }
 
 .burger div span {
@@ -140,7 +140,7 @@
   }
 
   .navLinks {
-    background-color: var(--primary);
+    background-color: var(--primary-light);
     z-index: 999;
   }
 
