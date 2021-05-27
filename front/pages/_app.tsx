@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import '../styles/globals.css';
 import EditorState from '../context/EditorState';
-import UserState, { UserContext } from '../context/UserState';
+import UserState from '../context/UserState';
 import axios from 'axios';
 import setAuthToken from '../lib/setAuthToken';
 
@@ -43,7 +43,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>markusryoti.io</title>
+        <title>markusryoti.com | Markus Ryöti</title>
+        <meta
+          name="description"
+          content="I talk about coding and life in general"
+        />
+        <meta
+          name="keywords"
+          content="programming, coding, software engineering, development, testing"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <UserState user={user}>

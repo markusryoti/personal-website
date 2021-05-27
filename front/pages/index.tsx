@@ -57,6 +57,18 @@ export default function Home() {
               </ul>
             </div>
           </div>
+          <div>
+            <p>
+              You can check some of my work from my{' '}
+              <a
+                href="https://github.com/markusryoti"
+                target="_blank"
+                className="link"
+              >
+                <em>Github</em>
+              </a>
+            </p>
+          </div>
           <div className={styles.contactAction}>
             <div className={styles.textBlock}>
               <h2>Tell me how I can help you!</h2>
