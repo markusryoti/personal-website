@@ -1,24 +1,25 @@
 /* ================================================================= */
 /* Vars */
 :root {
-  --primary: #ff3562;
-  --primary-hover: #fd2554;
+  --primary-light: #ff3562;
+  --primary: #fd2554;
+
   --bg-primary: #fefbfc;
   --text-primary: #2f2f2f;
   --text-secondary: #fefbfc;
-  --bg-success: #0a8754;
-  --bg-success-hover: #097248;
-  --bg-info: #0197f6;
-  --bg-info-hover: #0069aa;
+  --bg-success: #097248;
+  --bg-success-light: #0a8754;
+  --bg-info: #0069aa;
+  --bg-info-light: #0197f6;
 }
 
 ::-moz-selection {
-  background: var(--primary);
+  background: var(--primary-light);
   color: var(--text-secondary);
 }
 
 ::selection {
-  background: var(--primary);
+  background: var(--primary-light);
   color: var(--text-secondary);
 }
 
@@ -94,7 +95,7 @@ input[type='submit'].btn {
 }
 
 .btn-success:hover {
-  background: var(--bg-success-hover);
+  background: var(--bg-success-light);
 }
 
 .btn-danger {
@@ -103,7 +104,7 @@ input[type='submit'].btn {
 }
 
 .btn-danger:hover {
-  background: var(--primary-hover);
+  background: var(--primary-light);
 }
 
 .btn-info {
@@ -112,7 +113,7 @@ input[type='submit'].btn {
 }
 
 .btn-info:hover {
-  background: var(--bg-info-hover);
+  background: var(--bg-info-light);
 }
 
 h1 {

@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <main className={styles.main}>
         <div className={styles.textBlock}>
-          <h2>Keep moving</h2>
+          <h2>Exploration</h2>
           <p>
             I am a young guy with a passion for writing code. I'm extremely
             curious and I like to explore things while continuously challenging

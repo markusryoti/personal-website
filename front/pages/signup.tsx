@@ -91,7 +91,7 @@ const signup = () => {
             />
             <input
               type="submit"
-              value="Login"
+              value="Signup"
               className="btn btn-success"
               onClick={handleSignup}
             />

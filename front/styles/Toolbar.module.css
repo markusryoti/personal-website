@@ -23,5 +23,5 @@
 }
 
 .toolbarContainer .isActive {
-  color: var(--primary);
+  color: var(--primary-light);
 }

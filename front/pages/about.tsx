@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
@@ -17,24 +16,24 @@ const about = () => {
           <p>
             I grew up liking to spend time on my computer. However like for many
             others, this didn't result to getting into coding. In fact I didn't
-            know anyone who wrote code and I didn't really know what that ment.
+            know anyone who wrote code and I didn't really know what that meant.
             So really my experiences were limited to downloading music,
             configuring my Winamp skins and researching whatever seemed like
-            interesting at the time. That was mostly dirtbikes to which I was
-            hugely interested at the time.
+            interesting. That was mostly dirtbikes to which I was hugely
+            interested at the time.
           </p>
           <p>
             Time went on and my time mostly went into riding my motorcycles
             amongst other hobbies which were swimming and cross-country skiing
-            at the time. After high school it was time to apply to college. I
-            got accepted to study automation engineering. We had a mandatory
+            during that time. After high school it was time to apply to college.
+            I got accepted to study automation engineering. We had a mandatory
             automationg class that freaked me a bit. We also had an introductory
             programming class and that felt really intimidating and hard. Since
             all of my childhood and youth I had been interested in dirtbikes,
             motorcycles and cars, I thought switching to mechanical engineering
-            would make more sense. I had also developed interest on business and
-            mechanical engineering integrated well with industrial economics in
-            my school. So I made the switch.
+            would make more sense. I had also developed an interest on business
+            and mechanical engineering integrated well with industrial economics
+            in my school. So I made the switch.
           </p>
           <p>
             I don't know why but at some point I thought maybe I should give
@@ -82,7 +81,6 @@ const about = () => {
           <p style={{ margin: '3rem 0' }}>
             <em>-Markus</em>
           </p>
-
           <div>
             <p>
               PS. If you have any questions or ideas you would like to share,
@@ -90,7 +88,6 @@ const about = () => {
               people!
             </p>
           </div>
-
           <div className={styles.imageContainer}>
             <img
               src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
