@@ -3,7 +3,6 @@
 :root {
   --primary-light: #ff3562;
   --primary: #fd2554;
-
   --bg-primary: #fefbfc;
   --text-primary: #2f2f2f;
   --text-secondary: #fefbfc;
@@ -22,8 +21,6 @@
   background: var(--primary-light);
   color: var(--text-secondary);
 }
-
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://use.fontawesome.com/releases/v5.15.3/css/all.css');
@@ -122,4 +119,8 @@ h1 {
 
 p {
   margin-bottom: 1rem;
+}
+
+.link {
+  text-decoration: underline;
 }
